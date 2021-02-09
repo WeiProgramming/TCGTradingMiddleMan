@@ -1,0 +1,58 @@
+.trade-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0 5%;
+}
+
+.trade-container .trade-left-form {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5%;
+}
+
+.trade-left-form-card-search-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  height: 40vh;
+  margin: 15px 0;
+}
+
+.trade-left-form-search-card-container {
+  padding: 2px;
+}
+
+.trade-left-form-search-card-container img {
+  margin: 10px 0;
+  max-width: 80%;
+}
+
+/*Right Form */
+.trade-container .trade-right-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5px;
+}
+
+.trade-right-form-card-search-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  height: 40%;
+  margin: 15px 0;
+}
+.trade-right-form-search-card-container {
+  padding: 2px;
+}
+
+.trade-right-form-search-card-container img {
+  margin: 10px 0;
+  max-width: 80%;
+}
