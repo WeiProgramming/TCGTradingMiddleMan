@@ -1,11 +1,15 @@
 const express = require('express');
 const axios = require('axios');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 
 const ygoroot = 'https://db.ygoprodeck.com/api/v7/cardinfo.php';
 const PORT = 3001;
+
+// cors
+app.use(cors())
 
 // support parsing of application/json type post data
 app.use(bodyParser.json());
@@ -21,7 +25,7 @@ app.get('/api/cards/:fname', (request, response) => {
         method: 'get'
     }).then(res => {
         filteredArr = res.data["data"].slice(0,100)
-                console.log(filteredArr);
+        console.log(filteredArr);
 
         return response.json({
             cards: filteredArr

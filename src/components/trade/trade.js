@@ -10,6 +10,7 @@ import {
   Paper,
   Checkbox,
   FormGroup,
+  Button,
 } from '@material-ui/core'
 import axios from 'axios'
 import { searchCard } from '../../services/api/ygo'
@@ -17,30 +18,46 @@ import './trade.css'
 
 function TradeComponent() {
   let [searchWord, setSearchWord] = useState('')
-  let [searchCards, setSearchCards] = useState([])
+  let [searchCards, setSearchCards] = useState({})
   useEffect(() => {
     console.log('exec ', searchCard(searchWord))
     async function getSearchedWord() {
-      let searchRes = await axios
+      await axios
         .get(searchCard(searchWord))
         .then((res) => {
-          return res.data
+          if(res.data.hasOwnProperty("cards")) {
+            setSearchCards((prevSearchRes) => ({...prevSearchRes, cards: [...res.data["cards"]]}));
+          }
         })
         .catch((e) => {
           console.log(e)
         })
-      console.log('client returned ', searchRes)
-      setSearchCards((searchCards) =>
-        searchRes?.cards ? [...searchRes['cards']] : searchCards,
-      )
-      console.log('executed search', searchCards)
     }
-    getSearchedWord()
-  }, [searchWord, setSearchWord])
+    if(searchWord !== '') {
+      getSearchedWord()
+    }
+  }, [])
 
-  let handleOnSearch = (event) => {
+  async function getSearchedWord() {
+    await axios
+      .get(searchCard(searchWord))
+      .then((res) => {
+        if(res.data.hasOwnProperty("cards")) {
+          setSearchCards((prevSearchRes) => ({...prevSearchRes, cards: [...res.data["cards"]]}));
+        }
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+  }
+
+  let updateSearchWord = (event) => {
     setSearchWord(`${event.target.value}`)
+  }
+  let handleOnSearch = () => {
     console.log('searching ', searchWord)
+    let searchResult = getSearchedWord();
+    console.log('search result from click ', searchResult);
   }
   return (
     <div>
@@ -56,49 +73,25 @@ function TradeComponent() {
                   label="Card Name..."
                   helperText="Find your Yu-Gi-Oh card to trade"
                   fullWidth
-                  variant="filled"
+                  variant="outlined"
                   value={searchWord}
-                  onChange={(e) => handleOnSearch(e)}
+                  onChange={(e) => updateSearchWord(e)}
                 />
+                <Button variant="contained" color="primary" onClick={() => handleOnSearch()}>Search</Button>
               </FormGroup>
             </FormControl>
             <FormControl></FormControl>
             <div className="trade-left-form-card-search-container">
-              {/* {Object.keys(searchCards).map((cardIndex) => {
-                Object.keys(searchCards[cardIndex]).map((attributes) => {
-                  if (attributes === 'card_images') {
-                      //  {console.log(searchCards[cardIndex][attributes]["0"]["image_url_small"])}
-                    return (
-                      <div key={searchCards[cardIndex][attributes]["0"]["id"]}>
-                        <p>https://storage.googleapis.com/ygoprodeck.com/pics_small/76080032.jpg</p>
-                        <img
-                          className="trade-left-form-search-card-img"
-                          src={searchCards[cardIndex][attributes]["0"]["image_url_small"]}
-                          alt="ygo-card"
-                        />
-                      </div>
-
-                    )
-                  }
-                })
-              })} */}
-              {searchCards.map((card) => {
+              {searchCards.hasOwnProperty("cards") ? searchCards["cards"].map((card) => {
                 return (
-                  <div>
+                  <div key={card["id"]}>
                     <img
                       src={card['card_images'][0]['image_url_small']}
                       alt={card['card_images'][0]['image_url_small']}
+                      className="trade-left-form-search-card-img"
                     />
                   </div>
-                )
-              })}
-              <div>
-                <img
-                  className="trade-left-form-search-card-img"
-                  src="https://storage.googleapis.com/ygoprodeck.com/pics_small/76080032.jpg"
-                  alt="ygo-card"
-                />
-              </div>
+                )}) : <div><h1>None Found</h1></div>}
             </div>
 
             <FormControl component="fieldset">
@@ -142,45 +135,19 @@ function TradeComponent() {
               label="Card Name..."
               helperText="Find your Yu-Gi-Oh card to trade"
               fullWidth
-              variant="filled"
+              variant="outlined"
             />
             <div className="trade-right-form-card-search-container">
-              <div className="trade-right-form-search-card-container">
-                <img
-                  className="trade-right-form-search-card-img"
-                  src="https://storage.googleapis.com/ygoprodeck.com/pics_small/6983839.jpg"
-                />
-              </div>
-              <div className="trade-right-form-search-card-container">
-                <img
-                  className="trade-right-form-search-card-img"
-                  src="https://storage.googleapis.com/ygoprodeck.com/pics_small/6983839.jpg"
-                />
-              </div>
-              <div className="trade-right-form-search-card-container">
-                <img
-                  className="trade-right-form-search-card-img"
-                  src="https://storage.googleapis.com/ygoprodeck.com/pics_small/6983839.jpg"
-                />
-              </div>
-              <div className="trade-right-form-search-card-container">
-                <img
-                  className="trade-right-form-search-card-img"
-                  src="https://storage.googleapis.com/ygoprodeck.com/pics_small/6983839.jpg"
-                />
-              </div>
-              <div className="trade-right-form-search-card-container">
-                <img
-                  className="trade-right-form-search-card-img"
-                  src="https://storage.googleapis.com/ygoprodeck.com/pics_small/6983839.jpg"
-                />
-              </div>
-              <div className="trade-right-form-search-card-container">
-                <img
-                  className="trade-right-form-search-card-img"
-                  src="https://storage.googleapis.com/ygoprodeck.com/pics_small/6983839.jpg"
-                />
-              </div>
+            {searchCards.hasOwnProperty("cards") ? searchCards["cards"].map((card) => {
+                return (
+                  <div key={card["id"]}>
+                    <img
+                      src={card['card_images'][0]['image_url_small']}
+                      alt={card['card_images'][0]['image_url_small']}
+                      className="trade-left-form-search-card-img"
+                    />
+                  </div>
+                )}) : <div><h1>None Found</h1></div>}
             </div>
 
             <FormControl component="fieldset">
