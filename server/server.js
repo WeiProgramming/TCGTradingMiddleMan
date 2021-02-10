@@ -20,12 +20,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Gets cards relative to given name
 app.get('/api/cards/:fname', (request, response) => {
     let filteredArr = [];
-    console.log(`hit searching cards ${ygoroot}?fname=${request.params.fname}`);
+    // console.log(`hit searching cards ${ygoroot}?fname=${request.params.fname}`);
     axios.get(`${ygoroot}?fname=${request.params.fname}`, {
         method: 'get'
     }).then(res => {
         filteredArr = res.data["data"].slice(0,100)
-        console.log(filteredArr);
+        // console.log(filteredArr);
 
         return response.json({
             cards: filteredArr

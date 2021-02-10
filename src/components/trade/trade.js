@@ -25,15 +25,19 @@ function TradeComponent() {
       await axios
         .get(searchCard(searchWord))
         .then((res) => {
-          if(res.data.hasOwnProperty("cards")) {
-            setSearchCards((prevSearchRes) => ({...prevSearchRes, cards: [...res.data["cards"]]}));
+          if (res.data.hasOwnProperty('cards')) {
+            let newCardObj = Object.assign({}, res.data)
+            setSearchCards((prevSearchRes) => ({
+              ...prevSearchRes,
+              cards: [...newCardObj['cards']],
+            }))
           }
         })
         .catch((e) => {
           console.log(e)
         })
     }
-    if(searchWord !== '') {
+    if (searchWord !== '') {
       getSearchedWord()
     }
   }, [])
@@ -42,8 +46,12 @@ function TradeComponent() {
     await axios
       .get(searchCard(searchWord))
       .then((res) => {
-        if(res.data.hasOwnProperty("cards")) {
-          setSearchCards((prevSearchRes) => ({...prevSearchRes, cards: [...res.data["cards"]]}));
+        if (res.data.hasOwnProperty('cards')) {
+          let newCardObj = Object.assign({}, res.data)
+          setSearchCards((prevSearchRes) => ({
+            ...prevSearchRes,
+            cards: [...newCardObj['cards']],
+          }))
         }
       })
       .catch((e) => {
@@ -56,8 +64,8 @@ function TradeComponent() {
   }
   let handleOnSearch = () => {
     console.log('searching ', searchWord)
-    let searchResult = getSearchedWord();
-    console.log('search result from click ', searchResult);
+    let searchResult = getSearchedWord()
+    console.log('search result from click ', searchResult)
   }
   return (
     <div>
@@ -77,23 +85,35 @@ function TradeComponent() {
                   value={searchWord}
                   onChange={(e) => updateSearchWord(e)}
                 />
-                <Button variant="contained" color="primary" onClick={() => handleOnSearch()}>Search</Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={(e) => handleOnSearch(e)}
+                >
+                  Search
+                </Button>
               </FormGroup>
             </FormControl>
             <FormControl></FormControl>
-            <div className="trade-left-form-card-search-container">
-              {searchCards.hasOwnProperty("cards") ? searchCards["cards"].map((card) => {
-                return (
-                  <div key={card["id"]}>
-                    <img
-                      src={card['card_images'][0]['image_url_small']}
-                      alt={card['card_images'][0]['image_url_small']}
-                      className="trade-left-form-search-card-img"
-                    />
-                  </div>
-                )}) : <div><h1>None Found</h1></div>}
+            <div className="trade-left-form__card-search-container">
+              {searchCards.hasOwnProperty('cards') ? (
+                searchCards['cards'].map((card) => {
+                  return (
+                    <div key={card['id']}>
+                      <img
+                        src={card['card_images'][0]['image_url_small']}
+                        alt={card['card_images'][0]['image_url_small']}
+                        className="trade-left-form__card-img"
+                      />
+                    </div>
+                  )
+                })
+              ) : (
+                <div>
+                  <h1>None Found</h1>
+                </div>
+              )}
             </div>
-
             <FormControl component="fieldset">
               <FormLabel component="legend">Condition?</FormLabel>
               <RadioGroup aria-label="gender" name="gender1" value="" row>
@@ -112,6 +132,7 @@ function TradeComponent() {
               </RadioGroup>
             </FormControl>
           </Paper>
+
           <Paper className="trade-right-form">
             <FormControl component="fieldset">
               <FormLabel component="legend">
@@ -137,17 +158,34 @@ function TradeComponent() {
               fullWidth
               variant="outlined"
             />
-            <div className="trade-right-form-card-search-container">
-            {searchCards.hasOwnProperty("cards") ? searchCards["cards"].map((card) => {
-                return (
-                  <div key={card["id"]}>
-                    <img
-                      src={card['card_images'][0]['image_url_small']}
-                      alt={card['card_images'][0]['image_url_small']}
-                      className="trade-left-form-search-card-img"
-                    />
-                  </div>
-                )}) : <div><h1>None Found</h1></div>}
+            <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={(e) => handleOnSearch(e)}
+                >
+                  Search
+            </Button>
+            <div className="trade-right-form__card-search-container">
+              {searchCards.hasOwnProperty('cards') ? (
+                searchCards['cards'].map((card) => {
+                  return (
+                    <div key={card['id']}>
+                      <img
+                        src={card['card_images'][0]['image_url_small']}
+                        alt={card['card_images'][0]['image_url_small']}
+                        className="trade-right-form__card-img"
+                        onChange={(event) => {
+                          updateSearchWord(event)
+                        }}
+                      />
+                    </div>
+                  )
+                })
+              ) : (
+                <div>
+                  <h1>None Found</h1>
+                </div>
+              )}
             </div>
 
             <FormControl component="fieldset">
