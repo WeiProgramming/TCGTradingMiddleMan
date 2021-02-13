@@ -26,6 +26,12 @@ function App() {
           <Route exact path="/">
             <DefaultLayout></DefaultLayout>
           </Route>
+          <Route path="/login">
+            <AuthLayout></AuthLayout>
+          </Route>
+          <Route path="/register">
+            <AuthLayout></AuthLayout>
+          </Route>
           <Route path="/auth">
             <AuthLayout></AuthLayout>
           </Route>

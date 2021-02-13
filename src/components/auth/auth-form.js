@@ -1,58 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react'
 
 import {
-    Paper,
-    Container,
-    FormControl,
-    FormControlLabel,
-    FormGroup,
-    FormLabel,
-    TextField
+  Paper,
+  Container,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormLabel,
+  TextField,
+  ButtonGroup,
+  Button,
 } from '@material-ui/core'
 
+import { useParams } from 'react-router-dom'
+
+import './auth-form.css'
+
 const AuthFormComponent = () => {
-    return (
-        <Container>
-            <Paper>
-                <FormControl component="fieldset">
-                    <FormLabel component="legend">Login</FormLabel>
-                    <FormGroup>
-                    <FormControlLabel
-                    value="email"
-                    label="Email"
-                    control={<TextField/>}
-                    />
-                    <FormControlLabel
-                    value="password"
-                    label="Password"
-                    control={<TextField/>}
-                    />
-                    </FormGroup>
-                    </FormControl>
-                
-                <FormControl component="fieldset">
-                    <FormLabel component="legend">Register</FormLabel>
-                    <FormGroup>
-                    <FormControlLabel
-                    value="email"
-                    label="Email"
-                    control={<TextField/>}
-                    />
-                    <FormControlLabel
-                    value="password"
-                    label="Password"
-                    control={<TextField/>}
-                    />
-                    <FormControlLabel
-                    value="confirmpassword"
-                    label="Confirm Password"
-                    control={<TextField/>}
-                    />
-                    </FormGroup>
-                </FormControl>
-            </Paper>
-        </Container>
-    )
+  const [form, setForm] = useState({
+    email: '',
+    pass: '',
+    confirmPass: '',
+  })
+  let { slug } = useParams()
+
+  const updateForm = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    })
+  }
+  return (
+    <Paper className="auth-container">
+      <FormControl component="fieldset">
+        <FormLabel component="legend">
+          <h1>{slug === 'register' ? 'Register' : 'Login'}</h1>
+        </FormLabel>
+        <FormGroup>
+          <FormControlLabel
+            name="email"
+            value={form['email']}
+            label="Email"
+            control={<TextField />}
+            onChange={(e) => updateForm(e)}
+          />
+          <FormControlLabel
+            name="pass"
+            value={form['pass']}
+            label="Password"
+            control={<TextField />}
+            onChange={(e) => {
+              updateForm(e)
+            }}
+          />
+
+          {slug === 'register' ? (
+           <FormControlLabel
+            name="confirmPass"
+            value={form['confirmPass']}
+            label="Confirm Password"
+            control={<TextField />}
+            onChange={(e) => {
+              updateForm(e)
+            }}
+          />
+          ) : ''}
+        </FormGroup>
+      </FormControl>
+      <ButtonGroup>
+        <Button variant="outlined" color="primary">
+          {slug === 'register' ? 'Register' : 'Login'}
+        </Button>
+      </ButtonGroup>
+    </Paper>
+  )
 }
 
-export default AuthFormComponent;
+export default AuthFormComponent
