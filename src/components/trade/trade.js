@@ -11,6 +11,9 @@ import {
   Checkbox,
   FormGroup,
   Button,
+  InputLabel,
+  MenuItem,
+  Select
 } from '@material-ui/core'
 import axios from 'axios'
 import { searchCard } from '../../services/api/ygo'
@@ -19,6 +22,8 @@ import './trade.css'
 function TradeComponent() {
   let [searchWord, setSearchWord] = useState('')
   let [searchCards, setSearchCards] = useState({})
+  let [condition, setCondition] = useState()
+
   useEffect(() => {
     console.log('exec ', searchCard(searchWord))
     async function getSearchedWord() {
@@ -67,9 +72,20 @@ function TradeComponent() {
     let searchResult = getSearchedWord()
     console.log('search result from click ', searchResult)
   }
+
+  let handleOnRadioChange = (event) => {
+    setCondition(event.target.value);
+  }
+
+  let handleOnHoverModal = (event) => {
+    console.log(event, 'this is the event');
+  }
   return (
     <div>
-      <h1>What would you like to trade?</h1>
+      <div>
+        <h1>Let's Trade!</h1>
+      </div>
+
       <form className="" noValidate autoComplete="off">
         <div className="trade-container">
           <Paper className="trade-left-form">
@@ -94,7 +110,7 @@ function TradeComponent() {
                 </Button>
               </FormGroup>
             </FormControl>
-            <FormControl></FormControl>
+            <FormControl>
             <div className="trade-left-form__card-search-container">
               {searchCards.hasOwnProperty('cards') ? (
                 searchCards['cards'].map((card) => {
@@ -114,9 +130,19 @@ function TradeComponent() {
                 </div>
               )}
             </div>
+            </FormControl>
+            <FormControl>
+              <InputLabel id="card-set-label">From which card set?</InputLabel>
+              <Select labelId="card-set-label" fullWidth={false}>
+                <MenuItem value={'LOB'}>Legend Of Blue Eyes</MenuItem>
+                <MenuItem value={'PS'}>Pharoah's Servant</MenuItem>
+              </Select>
+            </FormControl>
             <FormControl component="fieldset">
               <FormLabel component="legend">Condition?</FormLabel>
-              <RadioGroup aria-label="gender" name="gender1" value="" row>
+              <RadioGroup aria-label="gender" name="gender1" value={condition} row onChange={(e) => {
+                handleOnRadioChange(e);
+              }}>
                 <FormControlLabel value="new" control={<Radio />} label="New" />
                 <FormControlLabel
                   value="newused"
@@ -131,6 +157,11 @@ function TradeComponent() {
                 <FormControlLabel value="Bad" control={<Radio />} label="Bad" />
               </RadioGroup>
             </FormControl>
+            <RadioGroup>
+              <FormLabel>First Edition?</FormLabel>
+              <FormControlLabel value="no" label="No" control={<Radio/>}/>
+              <FormControlLabel value="yes" label="Yes" control={<Radio/>}/>
+            </RadioGroup>
           </Paper>
 
           <Paper className="trade-right-form">
@@ -169,7 +200,9 @@ function TradeComponent() {
               {searchCards.hasOwnProperty('cards') ? (
                 searchCards['cards'].map((card) => {
                   return (
-                    <div key={card['id']}>
+                    <div key={card['id']} onMouseEnter={(e) => {
+                      handleOnHoverModal(e)
+                    }}> 
                       <img
                         src={card['card_images'][0]['image_url_small']}
                         alt={card['card_images'][0]['image_url_small']}

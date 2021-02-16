@@ -4,12 +4,33 @@
   width: 100%;
 }
 
+.landing__banner {
+  height: 60vh;
+  width: 100%;
+  background-image: url('../../assets/images/landing-banner.png');
+  background-position: center;
+  background-size: auto;
+  position: relative;
+}
+
+.landing__header {
+  color: #fff;
+  position: absolute;
+  top: 30%;
+  left: 5%;
+}
+
 .hero {
   display: flex;
   flex-direction: column;
   min-height: 60vh;
   border-bottom: 1px solid black;
   width: 100%;
+  padding: 2% 0;
+}
+
+.hero__header {
+  text-align: center;
 }
 
 /* Encases left and right trade list */
@@ -22,6 +43,7 @@
   height: 100%;
   width: 50%;
   padding: 3%;
+  border-right: 1px solid #808080;
 }
 
 .hero__left .hero__trade-list {
@@ -38,23 +60,7 @@
 .hero__right {
   height: 100%;
   width: 50%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 2% 2%;
-  overflow-y: scroll;
-}
-
-.hero__right .hero__img-container {
-  max-height: 200px;
-  width: 25%;
-  margin-bottom: 3%;
-  padding: 2%;
-}
-
-.hero_img {
-  height: auto;
-  max-width: 100%;
+  padding: 3%;
 }
 
 .hero__right .hero__trade-list {
@@ -63,14 +69,27 @@
   flex-wrap: wrap;
 }
 
-.hero__signup > * {
-  margin: 0 auto;
+.hero__right .hero__img-container {
+  width: 30%;
+  padding: 1%;
+}
+
+.hero_img {
+  height: auto;
+  max-width: 100%;
+}
+
+.hero__signup {
+  display: flex;
+  justify-content: center;
 }
 
 .about {
   display: flex;
   flex-direction: column;
   padding: 0 2%;
+  background-color: honeydew;
+  padding-bottom: 2%;
 }
 
 .about__container {
@@ -78,6 +97,22 @@
   flex-direction: row;
 }
 
+.about__section-header {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
 .about__item {
   flex: 1;
+}
+
+.newsletter {
+  padding: 1% 0;
+  background-color: #000;
+}
+
+.newsletter__container {
+  text-align: center;
+  color: #fff;
 }

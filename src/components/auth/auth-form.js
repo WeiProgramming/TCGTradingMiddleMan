@@ -12,7 +12,7 @@ import {
   Button,
 } from '@material-ui/core'
 
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 import './auth-form.css'
 
@@ -55,20 +55,27 @@ const AuthFormComponent = () => {
           />
 
           {slug === 'register' ? (
-           <FormControlLabel
-            name="confirmPass"
-            value={form['confirmPass']}
-            label="Confirm Password"
-            control={<TextField />}
-            onChange={(e) => {
-              updateForm(e)
-            }}
-          />
-          ) : ''}
+            <FormControlLabel
+              name="confirmPass"
+              value={form['confirmPass']}
+              label="Confirm Password"
+              control={<TextField />}
+              onChange={(e) => {
+                updateForm(e)
+              }}
+            />
+          ) : (
+            ''
+          )}
         </FormGroup>
       </FormControl>
       <ButtonGroup>
-        <Button variant="outlined" color="primary">
+        <Button
+          variant="outlined"
+          color="primary"
+          component={Link}
+          to="/dashboard"
+        >
           {slug === 'register' ? 'Register' : 'Login'}
         </Button>
       </ButtonGroup>
