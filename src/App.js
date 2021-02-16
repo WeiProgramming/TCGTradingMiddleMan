@@ -12,8 +12,8 @@ import './App.css'
 
 function App() {
   return (
-    <Router>
-      <div className="App">
+    <div className="App">
+      <Router>
         <Link
           to={`/auth`}
           variant="contained"
@@ -23,18 +23,18 @@ function App() {
           Login
         </Link>
         <Switch>
+          <Route exact path="/">
+            <DefaultLayout></DefaultLayout>
+          </Route>
           <Route path="/auth">
             <AuthLayout></AuthLayout>
           </Route>
           <Route path="/dashboard">
             <DashboardLayout></DashboardLayout>
           </Route>
-          <Route path="/">
-            <DefaultLayout></DefaultLayout>
-          </Route>
         </Switch>
-      </div>
-    </Router>
+      </Router>
+    </div>
   )
 }
 
