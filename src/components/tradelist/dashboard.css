@@ -1,0 +1,21 @@
+.dasboard__news-bar {
+  height: 100px;
+  background-color: #808080;
+}
+
+.dasboard__news-bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  padding: 1%;
+}
+
+.dashboard__card-container {
+  height: 100%;
+}
+
+.dashboard__card-container img {
+  height: inherit;
+  max-width: 100%;
+}
