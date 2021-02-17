@@ -37,6 +37,17 @@ app.get('/api/cards/:fname', (request, response) => {
     return
 });
 
+//Gets card based on ID
+app.get('/api/cards/:id', (request, response) => {
+    axios.get(ygoroot, {
+        method: 'get'
+    }).then(res => {
+        return response.json({
+            ...res
+        })
+    })
+});
+
 // gets all cards
 app.get('/api/cards', (request, response) => {
     let filteredArr = [];

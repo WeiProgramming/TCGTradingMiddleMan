@@ -1,0 +1,27 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  background-color: #000;
+}
+
+.footer-left {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-right {
+  flex: 1;
+}
+
+.footer__link-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  color: #fff;
+}

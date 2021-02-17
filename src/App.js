@@ -1,6 +1,7 @@
 import DefaultLayout from './layouts/default/default-layout'
 import DashboardLayout from './layouts/dashboard/dashboard-layout'
 import AuthLayout from './layouts/auth/auth-layout'
+import Navigation from './components/nav/navigation'
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,22 +10,23 @@ import {
   useRouteMatch,
 } from 'react-router-dom'
 import './App.css'
+import Footer from './components/footer/footer'
+
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Link
-          to={`/auth`}
-          variant="contained"
-          color="primary"
-          component={`button`}
-        >
-          Login
-        </Link>
+        <Navigation></Navigation>
         <Switch>
           <Route exact path="/">
             <DefaultLayout></DefaultLayout>
+          </Route>
+          <Route path="/login">
+            <AuthLayout></AuthLayout>
+          </Route>
+          <Route path="/register">
+            <AuthLayout></AuthLayout>
           </Route>
           <Route path="/auth">
             <AuthLayout></AuthLayout>
@@ -33,6 +35,7 @@ function App() {
             <DashboardLayout></DashboardLayout>
           </Route>
         </Switch>
+        <Footer></Footer>
       </Router>
     </div>
   )

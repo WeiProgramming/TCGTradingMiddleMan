@@ -2,6 +2,7 @@ import { Button, ButtonGroup } from '@material-ui/core'
 import React from 'react'
 import './landing.css'
 import { Link } from 'react-router-dom'
+import { BsUpload, BsCardText, BsFillReplyAllFill } from 'react-icons/bs'
 
 let exampleData = {
   id: 38369349,
@@ -47,25 +48,66 @@ let exampleData = {
 function LandingPage() {
   return (
     <div className="landing">
-      <div className="landing__header">
-        <h1>Trades Are Happening Now!</h1>
-      </div>
-
+      <section className="landing__banner">
+        <div className="landing__header">
+          <h1>Trades Are Happening Now!</h1>
+          <Button
+            component={Link}
+            to={'/login'}
+            variant="outlined"
+            color="primary"
+          >
+            Sign Up Today
+          </Button>
+        </div>
+      </section>
+      <section className="about">
+        <div className="about__section-header">
+          <h1>Easy Trading</h1>
+        </div>
+        <div className="about__container">
+          <div className="about__item">
+            <div className="about__header">
+              <h2>
+                Post Up <BsUpload />
+              </h2>
+            </div>
+            <div className="about__description">
+              <p>Put up your card you want to trade</p>
+            </div>
+          </div>
+          <div className="about__item">
+            <div className="about__header">
+              <h2>
+                Get Offers <BsCardText />
+              </h2>
+            </div>
+            <div className="about__description">
+              <p>Others will contact you through our easy and intuitive ui</p>
+            </div>
+          </div>
+          <div className="about__item">
+            <div className="about__header">
+              <h2>
+                Trade it <BsFillReplyAllFill />
+              </h2>
+            </div>
+            <div className="about__description">
+              <p>
+                Once confirmed we will mail you a top loader and a prepaid mail,
+                send your card and we will do the rest.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
       <section className="hero">
         <div className="hero__view-container">
           <div className="hero__left">
             <div className="hero__header">
-              <div>
                 <h2>Popular trades</h2>
-              </div>
             </div>
             <div className="hero__trade-list">
-              <div className="hero__img-container">
-                <img
-                  className="hero_img"
-                  src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg"
-                />
-              </div>
               <div className="hero__img-container">
                 <img
                   className="hero_img"
@@ -94,9 +136,7 @@ function LandingPage() {
           </div>
           <div className="hero__right">
             <div className="hero__header">
-              <div>
                 <h2>Recent trades</h2>
-              </div>
             </div>
             <div className="hero__trade-list">
               <div className="hero__img-container">
@@ -150,7 +190,6 @@ function LandingPage() {
             </div>
           </div>
         </div>
-
         <div className="hero__signup">
           <Button
             component={Link}
@@ -162,38 +201,17 @@ function LandingPage() {
           </Button>
         </div>
       </section>
-      <section className="about">
-        <div className="about__header">
-          <h1>Easy Trading</h1>
-        </div>
-        <div className="about__container">
-          <div className="about__item">
-            <div className="about__header">
-              <h2>Post Up</h2>
-            </div>
-            <div className="about__description">
-              <p>Put up your card you want to trade</p>
-            </div>
-          </div>
-          <div className="about__item">
-            <div className="about__header">
-              <h2>Get Offers</h2>
-            </div>
-            <div className="about__description">
-              <p>Others will contact you through our easy and intuitive ui</p>
-            </div>
-          </div>
-          <div className="about__item">
-            <div className="about__header">
-              <h2>Trade it</h2>
-            </div>
-            <div className="about__description">
-              <p>
-                Once confirmed we will mail you a top loader and a prepaid mail,
-                send your card and we will do the rest.
-              </p>
-            </div>
-          </div>
+      <section className="newsletter">
+        <div className="newsletter__container">
+          <h4>Sign up to our newsletter for the latest news and exclusive deals</h4>
+            <Button
+            component={Link}
+            to={'/auth'}
+            variant="outlined"
+            color="primary"
+            >
+            Sign Up Today
+          </Button>
         </div>
       </section>
     </div>
