@@ -19,40 +19,40 @@ function Navigation() {
         <input type="text" className="navigation__search-field" name="searchSite"/>
       </div>
       <div className="navigation__links-container">
-        <ul className="navigation__links">
-          <li>
-            <Link className="navigation__link-item" to="/dashboard">
+        <div className="navigation__links">
+          <div className="navigation__link-item">
+            <Link to="/dashboard">
               Profile
             </Link>
-          </li>
-          <li>
-            <Link className="navigation__link-item" component="a" to="/">
+            </div>
+          <div className="navigation__link-item">
+            <Link component="a" to="/">
               Home
             </Link>
-          </li>
-          <li>
-            <Link className="navigation__link-item" component="a" to="">
+          </div>
+          <div className="navigation__link-item">
+            <Link component="a" to="">
               Trades
             </Link>
-          </li>
-          <li>
-            <Link className="navigation__link-item" to="/login">
+          </div>
+          <div className="navigation__link-item">
+            <Link to="/login">
               Login
             </Link>
-          </li>
-          <li>
-            <Link className="navigation__link-item" to="/Register">
+          </div>
+          <div className="navigation__link-item">
+            <Link to="/Register">
               Register
             </Link>
-          </li>
-          <li>
-            <Link className="navigation__link-item" to="/logout">
+          </div>
+          <div className="navigation__link-item">
+            <Link to="/logout">
               Logout
             </Link>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
-    </div>
+      </div>
   )
 }
 

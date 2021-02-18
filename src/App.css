@@ -24,3 +24,8 @@
     transform: rotate(360deg);
   }
 }
+
+/* Temporary Material UI Button Theme Styling */
+.Button.MuiButton-textPrimary,.Button.MuiButton-outlinedPrimary {
+  color: #8A00FF;
+}

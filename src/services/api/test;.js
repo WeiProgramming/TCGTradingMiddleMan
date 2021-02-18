@@ -1,4 +1,4 @@
-let exampleData = JSON.parse({
+let exampleData = ({
     "cards": [
         {
             "id": 25795273,
