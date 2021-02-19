@@ -21,7 +21,7 @@ function Navigation() {
       <div className="navigation__links-container">
         <div className="navigation__links">
           <div className="navigation__link-item">
-            <Link to="/dashboard">
+            <Link to="/dashboard" component="a">
               Profile
             </Link>
             </div>
