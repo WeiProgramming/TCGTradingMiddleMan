@@ -62,7 +62,8 @@
 }
 .navigation__link-item a {
   text-decoration: none;
-  color: #8A00FF;
+  color: #FFF;
+  font-weight: bold;
 }
 
 .navigation__search {

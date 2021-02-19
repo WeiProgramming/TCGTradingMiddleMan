@@ -1,3 +1,15 @@
+@keyframes wiggle {
+  0%{
+    transform: rotate(-2deg);
+  }
+  50%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(2deg);
+  }
+}
+
 .landing {
   display: flex;
   flex-direction: column;
@@ -83,6 +95,13 @@
   padding: 1%;
 }
 
+.trade__img-container:hover {
+  animation-name: wiggle;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: .2s;
+}
+
 .trade_img {
   height: auto;
   max-width: 100%;
@@ -138,9 +157,24 @@
 .tcg {
   display: flex;
   flex-direction: row;
-  height: 300px;
+  height: 200px;
+
 }
 
 .tcg__item-container {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #808080;
+  padding: 1%;
+  box-sizing: border-box;
+  cursor: pointer;
 
+}
+
+.tcg__item-container img {
+  height: auto;
+  max-width: 100%;
 }

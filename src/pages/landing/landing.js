@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { BsUpload, BsCardText, BsFillReplyAllFill } from 'react-icons/bs'
 import logo from '../../assets/icons/logo-placeholder.png'
 import ygoLogo from '../../assets/images/ygo-logo.png'
+import pokeLogo from '../../assets/images/pokemon-logo.png'
 
 function LandingPage() {
   return (
@@ -27,50 +28,16 @@ function LandingPage() {
         <div className="tcg__item-container">
           <img src={ygoLogo}/>
         </div>
-        <div className="tcg__item-container"></div>
-        <div className="tcg__item-container"></div>
-        <div className="tcg__item-container"></div>
+        <div className="tcg__item-container">
+        <img src={pokeLogo}/>
+        </div>
+        <div className="tcg__item-container">
+        <img src={ygoLogo}/>
+        </div>
+        <div className="tcg__item-container">
+        <img src={ygoLogo}/>
+        </div>
       </section> 
-      <section className="about">
-        <div className="about__section-header">
-          <h1>Easy Trading</h1>
-        </div>
-        <div className="about__container">
-          <div className="about__item">
-            <div className="about__header">
-              <h2>
-                Post Up <BsUpload />
-              </h2>
-            </div>
-            <div className="about__description">
-              <p>Put up your card you want to trade</p>
-            </div>
-          </div>
-          <div className="about__item">
-            <div className="about__header">
-              <h2>
-                Get Offers <BsCardText />
-              </h2>
-            </div>
-            <div className="about__description">
-              <p>Others will contact you through our easy and intuitive ui</p>
-            </div>
-          </div>
-          <div className="about__item">
-            <div className="about__header">
-              <h2>
-                Trade it <BsFillReplyAllFill />
-              </h2>
-            </div>
-            <div className="about__description">
-              <p>
-                Once confirmed we will mail you a top loader and a prepaid mail,
-                send your card and we will do the rest.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
       <section className="trade">
         <div className="trade__view-container">
           <div className="trade__left">
@@ -169,6 +136,46 @@ function LandingPage() {
           >
             Sign Up Today
           </Button>
+        </div>
+      </section>
+      <section className="about">
+        <div className="about__section-header">
+          <h1>Easy Trading</h1>
+        </div>
+        <div className="about__container">
+          <div className="about__item">
+            <div className="about__header">
+              <h2>
+                Post Up <BsUpload />
+              </h2>
+            </div>
+            <div className="about__description">
+              <p>Put up your card you want to trade</p>
+            </div>
+          </div>
+          <div className="about__item">
+            <div className="about__header">
+              <h2>
+                Get Offers <BsCardText />
+              </h2>
+            </div>
+            <div className="about__description">
+              <p>Others will contact you through our easy and intuitive ui</p>
+            </div>
+          </div>
+          <div className="about__item">
+            <div className="about__header">
+              <h2>
+                Trade it <BsFillReplyAllFill />
+              </h2>
+            </div>
+            <div className="about__description">
+              <p>
+                Once confirmed we will mail you a top loader and a prepaid mail,
+                send your card and we will do the rest.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
       <section className="newsletter">

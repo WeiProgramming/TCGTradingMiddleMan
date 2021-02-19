@@ -1,0 +1,66 @@
+@keyframes wiggle {
+  0%{
+    transform: rotate(-2deg);
+  }
+  50%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(2deg);
+  }
+}
+
+.dasboard__news-bar {
+  height: 100px;
+  background-color: #808080;
+}
+
+.dasboard__news-bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  padding: 1%;
+  height: 150px;
+}
+
+.dashboard__news-item  {
+  height: inherit;
+  max-width: 100%;
+}
+.dashboard__news-item img {
+height: inherit;
+max-width: 100%;
+}
+
+.dashboard__card-container {
+  height: 100%;
+}
+
+
+.dashboard__card-container img:hover {
+  height: inherit;
+  max-width: 100%;
+  cursor: pointer;
+  animation-name: wiggle;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: .2s;
+}
+
+.dashboard__trade-table {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-image: url('/src/assets/images/trade-table-bg.jpg');
+  background-size: cover;
+}
+
+.dashboard__card-container {
+  height: 300px;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  margin: 3% 0;
+}
