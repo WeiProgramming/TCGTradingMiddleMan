@@ -4,6 +4,7 @@ import './landing.css'
 import { Link } from 'react-router-dom'
 import { BsUpload, BsCardText, BsFillReplyAllFill } from 'react-icons/bs'
 import logo from '../../assets/icons/logo-placeholder.png'
+import ygoLogo from '../../assets/images/ygo-logo.png'
 
 function LandingPage() {
   return (
@@ -22,6 +23,14 @@ function LandingPage() {
           </Button>
         </div>
       </section>
+      <section className="tcg">
+        <div className="tcg__item-container">
+          <img src={ygoLogo}/>
+        </div>
+        <div className="tcg__item-container"></div>
+        <div className="tcg__item-container"></div>
+        <div className="tcg__item-container"></div>
+      </section> 
       <section className="about">
         <div className="about__section-header">
           <h1>Easy Trading</h1>

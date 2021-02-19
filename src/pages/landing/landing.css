@@ -134,3 +134,13 @@
   text-align: center;
   color: #fff;
 }
+
+.tcg {
+  display: flex;
+  flex-direction: row;
+  height: 300px;
+}
+
+.tcg__item-container {
+
+}
