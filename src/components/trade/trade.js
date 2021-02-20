@@ -23,6 +23,8 @@ function TradeComponent() {
   let [searchWord, setSearchWord] = useState('')
   let [searchCards, setSearchCards] = useState({})
   let [condition, setCondition] = useState()
+  let [leftActive, setLeftActive] = useState(true)
+  let [rightActive, setRightActive] = useState(false)
 
   useEffect(() => {
     console.log('exec ', searchCard(searchWord))
@@ -80,15 +82,23 @@ function TradeComponent() {
   let handleOnHoverModal = (event) => {
     console.log(event, 'this is the event');
   }
-  return (
-    <div>
-      <div>
-        <h1>Let's Trade!</h1>
-      </div>
 
+  let handleFormSubmitClick = (event, formType) => {
+    if(formType === 'left') {
+      setRightActive(true);
+      setLeftActive(false);
+    } else if(formType === 'right') {
+      setRightActive(false);
+      setLeftActive(true);
+    }
+  }
+
+
+  return (
+    <div className="trade">
       <form className="" noValidate autoComplete="off">
         <div className="trade-container">
-          <Paper className="trade-left-form">
+          <Paper className={`trade-left-form ${leftActive ? 'active' : ''}`}>
             <FormControl component="fieldset">
               <FormLabel component="legend">Search Your Card</FormLabel>
               <FormGroup>
@@ -162,9 +172,10 @@ function TradeComponent() {
               <FormControlLabel value="no" label="No" control={<Radio/>}/>
               <FormControlLabel value="yes" label="Yes" control={<Radio/>}/>
             </RadioGroup>
+            <Button variant="outlined" color="primary" onClick={(event) => handleFormSubmitClick(event, 'left')}>Submit</Button>
           </Paper>
 
-          <Paper className="trade-right-form">
+          <Paper className={`trade-right-form ${rightActive ? 'active' : ''}`}>
             <FormControl component="fieldset">
               <FormLabel component="legend">
                 What are you willing to accept?
@@ -245,6 +256,7 @@ function TradeComponent() {
                   label="Bad"
                 />
               </FormGroup>
+              <Button variant="outlined" color="primary" onClick={(event) => handleFormSubmitClick(event, 'right')}>Submit</Button>
             </FormControl>
           </Paper>
         </div>

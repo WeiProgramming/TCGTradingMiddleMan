@@ -2,6 +2,7 @@ import DefaultLayout from './layouts/default/default-layout'
 import DashboardLayout from './layouts/dashboard/dashboard-layout'
 import AuthLayout from './layouts/auth/auth-layout'
 import Navigation from './components/nav/navigation'
+import ActivityBarComponent from './components/activity-bar/activity-bar'
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,6 +21,7 @@ function App() {
     <div className="App">
       <Router>
         <Navigation></Navigation>
+        <ActivityBarComponent></ActivityBarComponent>
         <Switch>
           <Route exact path="/">
             <DefaultLayout></DefaultLayout>

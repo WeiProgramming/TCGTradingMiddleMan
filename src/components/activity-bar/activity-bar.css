@@ -1,0 +1,90 @@
+@keyframes grow {
+  0% {
+    transform: scale(.3);
+    opacity: .3;
+  }
+  10% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1; 
+  }
+  70% {
+    transform: scale(1);
+    opacity: 1; 
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;   
+  }
+}
+
+.activity {
+  height: 200px;
+  background-color: #1c1c1c;
+  padding: 1%;
+}
+
+.activity h4 {
+  margin: 0;
+  color: #fff;
+}
+  
+  .activity__bar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    padding: 1%;
+    height: 150px;
+  }
+  
+  .activity__item  {
+    height: inherit;
+    max-width: 100%;
+    animation-name: grow;
+    animation-timing-function: ease-in-out;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    cursor: pointer;
+  }
+
+  .activity__item:nth-child(1) {
+    animation-delay: .06s;
+  }
+
+  .activity__item:nth-child(2) {
+    animation-delay: .07s;
+  }
+
+  .activity__item:nth-child(3) {
+    animation-delay: .08s;
+  }
+
+  .activity__item:nth-child(4) {
+    animation-delay: .09s;
+  }
+
+  .activity__item:nth-child(5) {
+    animation-delay: .1s;
+  }
+
+  .activity__item:nth-child(6) {
+    animation-delay: .2s;
+  }
+
+  .activity__item:nth-child(7) {
+    animation-delay: .3s;
+  }
+
+  .activity__item img {
+  height: inherit;
+  max-width: 100%;
+  }
+  
+  .card-container {
+    height: 100%;
+  }

@@ -21,20 +21,20 @@ function Navigation() {
       <div className="navigation__links-container">
         <div className="navigation__links">
           <div className="navigation__link-item">
-            <Link to="/dashboard" component="a">
-              Profile
-            </Link>
-            </div>
-          <div className="navigation__link-item">
             <Link component="a" to="/">
               Home
             </Link>
           </div>
           <div className="navigation__link-item">
-            <Link component="a" to="">
+            <Link component="a" to="/dashboard/list">
               Trades
             </Link>
           </div>
+          <div className="navigation__link-item">
+            <Link to="/dashboard" component="a">
+              Profile
+            </Link>
+            </div>
           <div className="navigation__link-item">
             <Link to="/login">
               Login
@@ -46,7 +46,7 @@ function Navigation() {
             </Link>
           </div>
           <div className="navigation__link-item">
-            <Link to="/logout">
+            <Link to="/">
               Logout
             </Link>
           </div>

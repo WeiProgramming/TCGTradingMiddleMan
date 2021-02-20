@@ -1,6 +1,7 @@
 .App {
   width: 100%;
   font-family: 'Libre Baskerville', serif;
+  overflow: hidden;
 }
 .App-header {
   background-color: #282c34;

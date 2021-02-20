@@ -1,42 +1,101 @@
 @keyframes wiggle {
   0%{
-    transform: rotate(-2deg);
+    transform: rotate(-1deg);
   }
   50%{
     transform: rotate(0deg);
   }
   100%{
-    transform: rotate(2deg);
+    transform: rotate(1deg);
   }
 }
 
-.dasboard__news-bar {
-  height: 100px;
-  background-color: #808080;
+@keyframes grow {
+  0% {
+    transform: scale(.3);
+    opacity: .3;
+  }
+  10% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1; 
+  }
+  70% {
+    transform: scale(1);
+    opacity: 1; 
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;   
+  }
 }
 
-.dasboard__news-bar {
+.dashboard {
+  position: relative;
+}
+
+.dashboard__prev {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  padding: 1%;
-  height: 150px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 60px;
+  left: 3%;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.dashboard__news-item  {
-  height: inherit;
-  max-width: 100%;
-}
-.dashboard__news-item img {
-height: inherit;
-max-width: 100%;
-}
-
-.dashboard__card-container {
-  height: 100%;
+.dashboard__next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 60px;
+  right: 3%;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
+.dashboard__rectangle {
+  border: 1px solid black;
+  height: 30px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: khaki;
+}
+
+.dashboard__rectangle p {
+  margin: 0;
+  font-weight: bolder;
+  font-size: 1rem;
+}
+.dashboard__next .dashboard__triangle {
+  border-left: 30px solid khaki;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  height: 0;
+  width: 0;
+  position: absolute;
+  right: -30px;
+  top: -50%;
+}
+
+.dashboard__prev .dashboard__triangle {
+  border-right: 30px solid khaki;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  height: 0;
+  width: 0;
+  position: absolute;
+  left: -30px;
+  top: -50%;
+}
 
 .dashboard__card-container img:hover {
   height: inherit;
@@ -45,7 +104,7 @@ max-width: 100%;
   animation-name: wiggle;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  animation-duration: .2s;
+  animation-duration: .1s;
 }
 
 .dashboard__trade-table {
@@ -63,4 +122,10 @@ max-width: 100%;
   display: flex;
   justify-content: center;
   margin: 3% 0;
+}
+
+.dashboard__card-container img {
+  animation-name: grow;
+  animation-direction: normal;
+  animation-duration: 10;
 }

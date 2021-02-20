@@ -17,13 +17,35 @@
 }
 
 .landing__banner {
-  min-height: 30vh;
+  min-height: 50vh;
   width: 100%;
-  background-image: url('../../assets/images/landing-banner.png');
   background-position: center;
-  background-size: auto;
+  background-size: cover;
   position: relative;
   background-repeat: no-repeat;
+}
+
+.all {
+  background-image: url('../../assets/images/tcg-banner.PNG');
+}
+
+.ygo {
+  background-image: url('../../assets/images/ygo-banner.jpg');
+}
+
+.mtg {
+  background-image: url('../../assets/images/mtg-banner.jpg');
+}
+
+.poke {
+  background-image: url('../../assets/images/poke-banner.png');
+}
+
+.landing__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.2);
 }
 
 .landing__header {
@@ -53,6 +75,10 @@
 
 .trade__header {
   text-align: center;
+}
+
+.trade__header h1 {
+  font-size: 2rem;
 }
 
 /* Encases left and right trade list */
@@ -105,7 +131,7 @@
 
 .trade_img {
   height: auto;
-  max-width: 100%;
+  max-width: 90%;
 }
 
 .trade__signup {
@@ -147,18 +173,20 @@
 
 .newsletter {
   padding: 1% 0;
-  background-color: #000;
+  background-color: #f5f7fd
+  ;
 }
 
 .newsletter__container {
   text-align: center;
-  color: #fff;
+  color: #000;
 }
 
 .tcg {
   display: flex;
   flex-direction: row;
   height: 200px;
+  background-color: #F5F7FD;
 }
 
 .tcg__item-container {
@@ -167,14 +195,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #808080;
   padding: 1%;
   box-sizing: border-box;
   cursor: pointer;
   height: auto;
+  transition: all .3s ease-in-out;
+  background-color: rgba(0,0,0,.2);
+
+}
+
+.tcg__item-container:hover {
+}
+
+.tcg__item-container:nth-child(1) {
+}
+
+.tcg__item-container h3 {
+  font-size: 28px;
+  font-weight: bolder;
+  color: #f5f7fd;
 }
 
 .tcg__item-container img {
   height: auto;
-  max-width: 100%;
+  max-width: 80%;
 }
