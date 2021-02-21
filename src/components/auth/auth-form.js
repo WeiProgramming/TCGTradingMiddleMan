@@ -16,13 +16,19 @@ import { useParams, Link } from 'react-router-dom'
 
 import './auth-form.css'
 
+import firebase from '../../firebase';
+
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, getFirebaseAuthService} from '../../services/api/firebase-auth';
+
+
 const AuthFormComponent = () => {
   const [form, setForm] = useState({
     email: '',
-    pass: '',
+    password: '',
     confirmPass: '',
   })
   let { slug } = useParams()
+
 
   const updateForm = (e) => {
     setForm({
@@ -30,6 +36,31 @@ const AuthFormComponent = () => {
       [e.target.name]: e.target.value,
     })
   }
+
+  const handleAuthLogin = async () => {
+    console.table(form);
+    let user = await signInWithEmailAndPassword(form);
+      if(user) {
+        console.log('user exists');
+      } else {
+        console.log("user doesn't exist");
+      }
+  }
+  const handleAuthRegister = async () => {
+    let user = await createUserWithEmailAndPassword(form);
+    console.table(user);
+  }
+  const handleAuthLogout = async () => {
+
+  }
+  const getAuthState = () => {
+    firebase.default.auth().onAuthStateChanged(user => {
+      if(user) {
+        
+      }
+    })
+  }
+
   return (
     <Paper className="auth-container">
       <FormControl component="fieldset">
@@ -45,8 +76,8 @@ const AuthFormComponent = () => {
             onChange={(e) => updateForm(e)}
           />
           <FormControlLabel
-            name="pass"
-            value={form['pass']}
+            name="password"
+            value={form['password']}
             label="Password"
             control={<TextField />}
             onChange={(e) => {
@@ -74,9 +105,20 @@ const AuthFormComponent = () => {
           variant="outlined"
           color="primary"
           component={Link}
-          to="/dashboard"
+          to=""
+          onClick={() => {handleAuthLogin()}}
         >
           {slug === 'register' ? 'Register' : 'Login'}
+        </Button>
+        <Button
+          variant="outlined"
+          color="primary"
+          component={Link}
+          to=""
+          onClick={() => {handleAuthRegister()}}
+        >
+          
+          Register
         </Button>
       </ButtonGroup>
     </Paper>

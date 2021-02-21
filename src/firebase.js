@@ -1,6 +1,8 @@
+import * as firebase from 'firebase'
+
+
 // src/firebase.js
-import firebase from 'firebase'
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyBcemWdaTuIp1J3eTdA2t0RgScJy80xNa4",
   authDomain: "tradingmiddleman-265cb.firebaseapp.com",
   projectId: "tradingmiddleman-265cb",
@@ -9,5 +11,8 @@ const firebaseConfig = {
   appId: "1:840651650940:web:076afe08448b33dbf516f9",
   measurementId: "G-BGWGYKB7XL"
 };
-firebase.initializeApp(config);
+
+firebase.default.initializeApp(firebaseConfig);
+
+
 export default firebase;
