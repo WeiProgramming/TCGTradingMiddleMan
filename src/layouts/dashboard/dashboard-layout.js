@@ -1,5 +1,5 @@
 import React from 'react';
-import TradeListComponent from '../../components/tradelist/tradelist';
+import DashboardComponent from '../../components/tradelist/dashboard';
 import TradeComponent from '../../components/trade/trade';
 import { 
     Link,
@@ -20,7 +20,7 @@ function DashboardLayout() {
             </Link>
             <Switch>
                 <Route path={`${match.url}/list`}>
-                    <TradeListComponent></TradeListComponent>
+                    <DashboardComponent></DashboardComponent>
                 </Route>
                 <Route path={`${match.url}/create`}>
                     <TradeComponent></TradeComponent>

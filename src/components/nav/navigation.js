@@ -3,6 +3,7 @@ import './navigation.css'
 import { TextField } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/icons/logo-placeholder.png'
+import {HiSearch} from 'react-icons/hi';
 
 function Navigation() {
   return (
@@ -14,7 +15,8 @@ function Navigation() {
         />
       </div>
       <div className="navigation__search">
-        <TextField id="standard" label="Search" />
+        <span className="navigation__icon-container"><HiSearch></HiSearch></span>
+        <input type="text" className="navigation__search-field" name="searchSite"/>
       </div>
       <div className="navigation__links-container">
         <ul className="navigation__links">
@@ -34,18 +36,18 @@ function Navigation() {
             </Link>
           </li>
           <li>
-            <Link className="navigation__link-item" to="/dashboard">
-              Profile
+            <Link className="navigation__link-item" to="/login">
+              Login
             </Link>
           </li>
           <li>
-            <Link className="navigation__link-item" to="/dashboard">
-              Profile
+            <Link className="navigation__link-item" to="/Register">
+              Register
             </Link>
           </li>
           <li>
-            <Link className="navigation__link-item" to="/dashboard">
-              Profile
+            <Link className="navigation__link-item" to="/logout">
+              Logout
             </Link>
           </li>
         </ul>

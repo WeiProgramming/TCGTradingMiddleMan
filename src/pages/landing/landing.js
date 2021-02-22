@@ -4,47 +4,6 @@ import './landing.css'
 import { Link } from 'react-router-dom'
 import { BsUpload, BsCardText, BsFillReplyAllFill } from 'react-icons/bs'
 
-let exampleData = {
-  id: 38369349,
-  name: 'Manga Ryu-Ran',
-  type: 'Toon Monster',
-  desc:
-    '(This card is always treated as a "Toon" card.)\nCannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by Tributing 2 monsters, while you control "Toon World". Cannot attack the turn it is Special Summoned. You must pay 500 LP to declare an attack with this monster. If "Toon World" on the field is destroyed, destroy this card. Can attack your opponent directly, unless they control a Toon monster, in which case this card must target a Toon monster for its attacks.',
-  atk: 2200,
-  def: 2600,
-  level: 7,
-  race: 'Dragon',
-  attribute: 'FIRE',
-  archetype: 'Toon',
-  card_sets: [
-    {
-      set_name: 'Dark Beginning 1',
-      set_code: 'DB1-EN038',
-      set_rarity: 'Common',
-      set_rarity_code: '(C)',
-      set_price: '1.08',
-    },
-  ],
-  card_images: [
-    {
-      id: 38369349,
-      image_url:
-        'https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg',
-      image_url_small:
-        'https://storage.googleapis.com/ygoprodeck.com/pics_small/38369349.jpg',
-    },
-  ],
-  card_prices: [
-    {
-      cardmarket_price: '0.08',
-      tcgplayer_price: '0.13',
-      ebay_price: '2.00',
-      amazon_price: '0.78',
-      coolstuffinc_price: '0.49',
-    },
-  ],
-}
-
 function LandingPage() {
   return (
     <div className="landing">
