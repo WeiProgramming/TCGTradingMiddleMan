@@ -1,0 +1,131 @@
+@keyframes wiggle {
+  0%{
+    transform: rotate(-1deg);
+  }
+  50%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(1deg);
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(.3);
+    opacity: .3;
+  }
+  10% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1; 
+  }
+  70% {
+    transform: scale(1);
+    opacity: 1; 
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;   
+  }
+}
+
+.dashboard {
+  position: relative;
+}
+
+.dashboard__prev {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 60px;
+  left: 3%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dashboard__next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 60px;
+  right: 3%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dashboard__rectangle {
+  border: 1px solid black;
+  height: 30px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: khaki;
+}
+
+.dashboard__rectangle p {
+  margin: 0;
+  font-weight: bolder;
+  font-size: 1rem;
+}
+.dashboard__next .dashboard__triangle {
+  border-left: 30px solid khaki;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  height: 0;
+  width: 0;
+  position: absolute;
+  right: -30px;
+  top: -50%;
+}
+
+.dashboard__prev .dashboard__triangle {
+  border-right: 30px solid khaki;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  height: 0;
+  width: 0;
+  position: absolute;
+  left: -30px;
+  top: -50%;
+}
+
+.dashboard__card-container img:hover {
+  height: inherit;
+  max-width: 100%;
+  cursor: pointer;
+  animation-name: wiggle;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: .1s;
+}
+
+.dashboard__trade-table {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-image: url('/src/assets/images/trade-table-bg.jpg');
+  background-size: cover;
+}
+
+.dashboard__card-container {
+  height: 300px;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  margin: 3% 0;
+}
+
+.dashboard__card-container img {
+  animation-name: grow;
+  animation-direction: normal;
+  animation-duration: 10;
+}

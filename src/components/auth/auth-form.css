@@ -1,5 +1,28 @@
-.auth-container {
+.auth {
   display: flex;
   flex-direction: column;
   padding: 3%;
+  background-color: #fff;
+  width: 30%;
+  border-radius: 15px;
+}
+
+.auth__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth__form > * {
+  margin-bottom: 15px;
+}
+
+.auth__form label {
+  font-weight: bold;
+}
+
+.auth__textfield {
+  height: 30px;
+  border-radius: 0  5px 5px 0;
+  padding: 0 10px;
+  font-weight: bold;
 }

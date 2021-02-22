@@ -1,12 +1,6 @@
 import React, { useState, useContext } from 'react'
 
 import {
-  Paper,
-  Container,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
   TextField,
   ButtonGroup,
   Button,
@@ -60,18 +54,20 @@ const AuthFormComponent = () => {
   }
 
   return (
-    <Paper className="auth-container">
-      <FormControl component="fieldset">
-        <FormLabel component="legend">
+    <div className="auth">
+        <div>
           <h1>{slug === 'register' ? 'Register' : 'Login'}</h1>
-        </FormLabel>
-        <FormGroup>
-          <FormControlLabel
+        </div>
+        <form className="auth__form">
+          <label for="email">Email</label>
+          <input
             name="email"
             value={form['email']}
             label="Email"
             control={<TextField />}
             onChange={(e) => updateForm(e)}
+            labelPlacement="start"
+            className="auth__textfield"
           />
           <FormControlLabel
             name="password"
@@ -81,10 +77,14 @@ const AuthFormComponent = () => {
             onChange={(e) => {
               updateForm(e)
             }}
+            labelPlacement="start"
+            className="auth__textfield"
           />
 
           {slug === 'register' ? (
-            <FormControlLabel
+            <span>
+            <label for="confirmPass">Confirm Password</label>
+            <input
               name="confirmPass"
               value={form['confirmPass']}
               label="Confirm Password"
@@ -92,12 +92,13 @@ const AuthFormComponent = () => {
               onChange={(e) => {
                 updateForm(e)
               }}
+              labelPlacement="start"
+              className="auth__textfield"
             />
+            </span>
           ) : (
             ''
           )}
-        </FormGroup>
-      </FormControl>
       <ButtonGroup>
         <Button
           variant="outlined"
@@ -119,7 +120,8 @@ const AuthFormComponent = () => {
           Register
         </Button>
       </ButtonGroup>
-    </Paper>
+        </form>
+    </div>
   )
 }
 

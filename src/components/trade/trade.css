@@ -1,9 +1,12 @@
+.trade {
+  background-color: #808080;
+}
+
 .trade-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   padding: 0 5%;
-  
 }
 
 .trade-left-form {
@@ -12,7 +15,14 @@
   padding: 2%;
   width: 100%;
   padding: 5px;
-  margin-bottom: 5%;
+  transition: all 1s ease-in-out 0.2s;
+  transform: translateX(-50%);
+  opacity: .5;
+}
+
+.trade-left-form.active {
+  transform: translateX(50%);
+  opacity: 1;
 }
 
 .trade-left-form__card-search-container {
@@ -35,6 +45,14 @@
   flex-direction: column;
   width: 100%;
   padding: 5px;
+  transition: transform 1s ease-in-out 0.2s;
+  transform: translateX(90%);
+  opacity: .5;
+}
+
+.trade-right-form.active {
+  transform: translateX(-40%);
+  opacity: 1;
 }
 
 .trade-right-form__card-search-container {

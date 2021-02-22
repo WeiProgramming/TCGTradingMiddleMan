@@ -1,5 +1,5 @@
 import React from 'react';
-import DashboardComponent from '../../components/tradelist/dashboard';
+import DashboardComponent from '../../components/dashboard/dashboard';
 import TradeComponent from '../../components/trade/trade';
 import { 
     Link,
