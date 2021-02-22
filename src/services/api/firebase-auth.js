@@ -16,3 +16,12 @@ export const createUserWithEmailAndPassword = (userCredentials) => {
         }, 300);
     });
 }
+
+export const signOut = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() =>
+            resolve(firebase.default.auth().signOut),
+            300
+        )
+    })
+}
