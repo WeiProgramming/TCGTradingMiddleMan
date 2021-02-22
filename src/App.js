@@ -12,13 +12,15 @@ import {
 } from 'react-router-dom'
 import './App.css'
 import Footer from './components/footer/footer'
+import {AuthProvider} from './firebase-context';
 
 
 
 
 function App() {
   return (
-    <div className="App">
+    <AuthProvider>
+          <div className="App">
       <Router>
         <Navigation></Navigation>
         <ActivityBarComponent></ActivityBarComponent>
@@ -42,6 +44,8 @@ function App() {
         <Footer></Footer>
       </Router>
     </div>
+    </AuthProvider>
+
   )
 }
 

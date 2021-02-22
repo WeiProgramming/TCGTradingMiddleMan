@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
 import {
   TextField,
@@ -10,13 +10,20 @@ import { useParams, Link } from 'react-router-dom'
 
 import './auth-form.css'
 
+import firebase from '../../firebase';
+
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, getFirebaseAuthService} from '../../services/api/firebase-auth';
+import {AuthContext} from '../../firebase-context'
+
 const AuthFormComponent = () => {
+  const {user} =useContext(AuthContext);
   const [form, setForm] = useState({
     email: '',
-    pass: '',
+    password: '',
     confirmPass: '',
   })
   let { slug } = useParams()
+
 
   const updateForm = (e) => {
     setForm({
@@ -24,6 +31,28 @@ const AuthFormComponent = () => {
       [e.target.name]: e.target.value,
     })
   }
+
+  const handleAuthLogin = async () => {
+    console.table(form);
+    let user = await signInWithEmailAndPassword(form);
+      if(user) {
+        console.log('user exists');
+      } else {
+        console.log("user doesn't exist");
+      }
+  }
+  const handleAuthRegister = async () => {
+    let user = await createUserWithEmailAndPassword(form);
+    console.table(user);
+  }
+  const getAuthState = () => {
+    firebase.default.auth().onAuthStateChanged(user => {
+      if(user) {
+        
+      }
+    })
+  }
+
   return (
     <div className="auth">
         <div>
@@ -40,10 +69,9 @@ const AuthFormComponent = () => {
             labelPlacement="start"
             className="auth__textfield"
           />
-          <label for="password">Password</label>
-          <input
-            name="pass"
-            value={form['pass']}
+          <FormControlLabel
+            name="password"
+            value={form['password']}
             label="Password"
             control={<TextField />}
             onChange={(e) => {
@@ -76,9 +104,20 @@ const AuthFormComponent = () => {
           variant="outlined"
           color="primary"
           component={Link}
-          to="/dashboard"
+          to=""
+          onClick={() => {handleAuthLogin()}}
         >
           {slug === 'register' ? 'Register' : 'Login'}
+        </Button>
+        <Button
+          variant="outlined"
+          color="primary"
+          component={Link}
+          to=""
+          onClick={() => {handleAuthRegister()}}
+        >
+          
+          Register
         </Button>
       </ButtonGroup>
         </form>
