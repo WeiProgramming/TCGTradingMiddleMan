@@ -6,44 +6,61 @@ import {
   Button,
 } from '@material-ui/core'
 
+import {useHistory} from 'react-router-dom'
+
 import { useParams, Link } from 'react-router-dom'
 
 import './auth-form.css'
 
 import firebase from '../../firebase';
 
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, getFirebaseAuthService} from '../../services/api/firebase-auth';
+import {
+  createUserWithEmailAndPassword,
+   signInWithEmailAndPassword,
+    signOut,
+     getFirebaseAuthService} from '../../services/api/firebase-auth';
 import {AuthContext} from '../../firebase-context'
 
 const AuthFormComponent = () => {
-  const {user} =useContext(AuthContext);
+  const routeHistory = useHistory();
+  const {user} = useContext(AuthContext);
   const [form, setForm] = useState({
     email: '',
     password: '',
     confirmPass: '',
   })
-  let { slug } = useParams()
-
+  let { authType } = useParams()
 
   const updateForm = (e) => {
+    console.table(form)
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     })
   }
 
-  const handleAuthLogin = async () => {
-    console.table(form);
-    let user = await signInWithEmailAndPassword(form);
-      if(user) {
-        console.log('user exists');
-      } else {
-        console.log("user doesn't exist");
+  const handleAuthLogin = async (e) => {
+    e.preventDefault();
+      try {
+        let user = await signInWithEmailAndPassword(form);
+        if(user) {
+          routeHistory.push('/dashboard');
+        }
+      } catch(e) {
+        console.log('invalid');
       }
   }
-  const handleAuthRegister = async () => {
-    let user = await createUserWithEmailAndPassword(form);
+  const handleAuthRegister = async (e) => {
+    e.preventDefault();
     console.table(user);
+    try {
+      let user = await createUserWithEmailAndPassword(form);
+      if(user) {
+        routeHistory.push('/');
+      }
+    } catch(e) {
+      console.log('invalid');
+    }
   }
   const getAuthState = () => {
     firebase.default.auth().onAuthStateChanged(user => {
@@ -53,23 +70,24 @@ const AuthFormComponent = () => {
     })
   }
 
+  console.log('this is the user', user)
   return (
     <div className="auth">
         <div>
-          <h1>{slug === 'register' ? 'Register' : 'Login'}</h1>
+          <h1>{authType === 'register' ? 'Register' : 'Login'}</h1>
         </div>
         <form className="auth__form">
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
           <input
             name="email"
             value={form['email']}
             label="Email"
             control={<TextField />}
             onChange={(e) => updateForm(e)}
-            labelPlacement="start"
             className="auth__textfield"
           />
-          <FormControlLabel
+          <label htmlFor="password">Password</label>
+          <input
             name="password"
             value={form['password']}
             label="Password"
@@ -77,13 +95,14 @@ const AuthFormComponent = () => {
             onChange={(e) => {
               updateForm(e)
             }}
-            labelPlacement="start"
             className="auth__textfield"
           />
-
-          {slug === 'register' ? (
-            <span>
-            <label for="confirmPass">Confirm Password</label>
+          {authType === 'register' ? (
+            <label htmlFor="confirmPass">Confirm Password</label>
+          ) : (
+            ''
+          )}
+          {authType === 'register' ? (
             <input
               name="confirmPass"
               value={form['confirmPass']}
@@ -92,10 +111,8 @@ const AuthFormComponent = () => {
               onChange={(e) => {
                 updateForm(e)
               }}
-              labelPlacement="start"
               className="auth__textfield"
             />
-            </span>
           ) : (
             ''
           )}
@@ -105,18 +122,17 @@ const AuthFormComponent = () => {
           color="primary"
           component={Link}
           to=""
-          onClick={() => {handleAuthLogin()}}
+          onClick={(e) => {handleAuthLogin(e)}}
         >
-          {slug === 'register' ? 'Register' : 'Login'}
+          {authType === 'register' ? 'Register' : 'Login'}
         </Button>
         <Button
           variant="outlined"
           color="primary"
           component={Link}
           to=""
-          onClick={() => {handleAuthRegister()}}
+          onClick={(e) => {handleAuthRegister(e)}}
         >
-          
           Register
         </Button>
       </ButtonGroup>

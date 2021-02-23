@@ -14,9 +14,6 @@ import './App.css'
 import Footer from './components/footer/footer'
 import {AuthProvider} from './firebase-context';
 
-
-
-
 function App() {
   return (
     <AuthProvider>
@@ -28,17 +25,11 @@ function App() {
           <Route exact path="/">
             <DefaultLayout></DefaultLayout>
           </Route>
-          <Route path="/login">
-            <AuthLayout></AuthLayout>
-          </Route>
-          <Route path="/register">
-            <AuthLayout></AuthLayout>
-          </Route>
-          <Route path="/auth">
-            <AuthLayout></AuthLayout>
-          </Route>
           <Route path="/dashboard">
             <DashboardLayout></DashboardLayout>
+          </Route>
+          <Route path="/:authType">
+            <AuthLayout></AuthLayout>
           </Route>
         </Switch>
         <Footer></Footer>

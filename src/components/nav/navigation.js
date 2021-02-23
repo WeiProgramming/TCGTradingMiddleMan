@@ -41,7 +41,7 @@ function Navigation() {
             </Link>
           </div>
           <div className="navigation__link-item">
-            <Link to="/Register">
+            <Link to="/register">
               Register
             </Link>
           </div>
