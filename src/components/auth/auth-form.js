@@ -56,7 +56,7 @@ const AuthFormComponent = () => {
     try {
       let user = await createUserWithEmailAndPassword(form);
       if(user) {
-        routeHistory.push('/');
+        routeHistory.push('/dashboard');
       }
     } catch(e) {
       console.log('invalid');

@@ -17,11 +17,10 @@ export const createUserWithEmailAndPassword = (userCredentials) => {
     });
 }
 
-export const signOut = () => {
+export const authState = () => {
     return new Promise((resolve, reject) => {
-        setTimeout(() =>
-            resolve(firebase.default.auth().signOut),
-            300
-        )
+        setTimeout(() => {
+            resolve(firebase.default.auth())
+        }, 300)
     })
 }
