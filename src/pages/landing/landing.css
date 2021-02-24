@@ -146,6 +146,8 @@
   background-color: #1c1c1c;
   padding-bottom: 2%;
   color: #fff;
+  -webkit-box-shadow: 0px 20px 33px 5px #FFFFFF; 
+  box-shadow: 0px 20px 33px 5px #FFFFFF;
 }
 
 .about__container {
@@ -173,7 +175,7 @@
 
 .newsletter {
   padding: 1% 0;
-  background-color: #f5f7fd
+  background-color: rgb(255, 255, 255)
   ;
 }
 

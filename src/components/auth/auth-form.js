@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 
 import {
   TextField,
@@ -16,14 +16,10 @@ import firebase from '../../firebase';
 
 import {
   createUserWithEmailAndPassword,
-   signInWithEmailAndPassword,
-    signOut,
-     getFirebaseAuthService} from '../../services/api/firebase-auth';
-import {AuthContext} from '../../firebase-context'
+   signInWithEmailAndPassword} from '../../services/api/firebase-auth';
 
 const AuthFormComponent = () => {
   const routeHistory = useHistory();
-  const {user} = useContext(AuthContext);
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -52,7 +48,6 @@ const AuthFormComponent = () => {
   }
   const handleAuthRegister = async (e) => {
     e.preventDefault();
-    console.table(user);
     try {
       let user = await createUserWithEmailAndPassword(form);
       if(user) {
@@ -69,8 +64,6 @@ const AuthFormComponent = () => {
       }
     })
   }
-
-  console.log('this is the user', user)
   return (
     <div className="auth">
         <div>

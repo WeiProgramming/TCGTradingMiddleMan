@@ -25,6 +25,23 @@
   height: 200px;
   background-color: #1c1c1c;
   padding: 1%;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #000;
+}
+
+.activity__header { 
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+}
+
+.activity__header img {
+  max-width: 100%;
+  height: auto;
+  margin-left: .5%;
+  margin-bottom: 2%;
+  
 }
 
 .activity h4 {
@@ -37,12 +54,11 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
-    padding: 1%;
-    height: 150px;
+    height: 70%;
   }
   
   .activity__item  {
-    height: inherit;
+    height: 100%;
     max-width: 100%;
     animation-name: grow;
     animation-timing-function: ease-in-out;
@@ -50,6 +66,12 @@
     animation-iteration-count: infinite;
     animation-direction: normal;
     cursor: pointer;
+    transition: all .3s ease-in-out;
+  }
+
+  .activity__item:hover {
+    -webkit-box-shadow: 0px 0px 15px 3px #FFFFFF; 
+    box-shadow: 0px 0px 15px 3px #FFFFFF;
   }
 
   .activity__item:nth-child(1) {

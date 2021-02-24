@@ -7,6 +7,7 @@ import {HiSearch} from 'react-icons/hi';
 
 import {signOut, authState} from '../../services/api/firebase-auth'
 import {useHistory} from 'react-router-dom'
+import {AiFillHome} from 'react-icons/ai'
 
 function Navigation() {
   let routeHistory = useHistory();
@@ -57,15 +58,15 @@ function Navigation() {
       </div>
       <div className="navigation__links-container">
         <div className="navigation__links">
+          <div className="navigation__link-item">
+            <Link component="a" to="/">
+              <AiFillHome></AiFillHome> &nbsp; Home
+            </Link>
+          </div>
           {Object.keys(user.user).length ? (
             <React.Fragment>
           <div className="navigation__link-item">
-            <Link component="a" to="/">
-              Home
-            </Link>
-          </div>
-          <div className="navigation__link-item">
-            <Link component="a" to="/dashboard/list">
+            <Link component="a" to="/dashboard/create">
               Trades
             </Link>
           </div>

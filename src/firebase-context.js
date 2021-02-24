@@ -10,10 +10,11 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     firebase.default.auth().onAuthStateChanged(user => {
       console.log('auth provider ', user)
+      setUser(user)
     })
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={ user }>{children}</AuthContext.Provider>
   )
 }

@@ -7,26 +7,48 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  useRouteMatch,
+  Redirect
 } from 'react-router-dom'
+import React, {useContext} from 'react'
 import './App.css'
 import Footer from './components/footer/footer'
-import {AuthProvider} from './firebase-context';
+import {AuthContext} from './firebase-context';
+
+
 
 function App() {
+  const authContext = useContext(AuthContext);
+  console.log('authcontext in app', authContext)
   return (
-    <AuthProvider>
-          <div className="App">
+    <div className="App">
       <Router>
         <Navigation></Navigation>
         <ActivityBarComponent></ActivityBarComponent>
         <Switch>
-          <Route exact path="/">
-            <DefaultLayout></DefaultLayout>
-          </Route>
-          <Route path="/dashboard">
-            <DashboardLayout></DashboardLayout>
+          <Route exact path="/dashboard" render={() => {
+            if(authContext) {
+              return <DashboardLayout></DashboardLayout>
+            }
+            else {
+              return <Redirect to="/"/>
+            }
+          }}/>
+          <Route exact path="/" render={() => {
+            if(!authContext) {
+              return <DefaultLayout></DefaultLayout>
+            }
+            else {
+              return <Redirect to="/dashboard"/>
+            }
+          }}/>
+          <Route path="/dashboard/:type" render={() => {
+            if(authContext) {
+              return <DashboardLayout></DashboardLayout>
+            }
+            else {
+              return <Redirect to="/login"/>
+            }
+          }}>
           </Route>
           <Route path="/:authType">
             <AuthLayout></AuthLayout>
@@ -35,8 +57,6 @@ function App() {
         <Footer></Footer>
       </Router>
     </div>
-    </AuthProvider>
-
   )
 }
 

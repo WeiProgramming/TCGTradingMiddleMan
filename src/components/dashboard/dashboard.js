@@ -1,15 +1,12 @@
 import React from 'react';
 import './dashboard.css';
-import { getTestData } from '../../services/api/test;'
+import greenArrowLogo from '../../assets/images/green-arrow.png';
 
 function DashboardComponent() {
     return (
         <div className="dashboard" color="primary">
             <div className="dashboard__prev">
-                <div className="dashboard__rectangle">
-                    <p>prev</p>
-                    <div className="dashboard__triangle"></div>
-                </div>
+                    <img src={greenArrowLogo}/>
             </div>
             <div className="dashboard__trade-table">
                 <div className="dashboard__card-container">
@@ -38,10 +35,7 @@ function DashboardComponent() {
                 </div>
             </div>
             <div className="dashboard__next">
-            <div className="dashboard__rectangle">
-                <p>next</p>
-                <div className="dashboard__triangle"></div>
-            </div>
+                <img src={greenArrowLogo}/>
             </div>
         </div>
     )
