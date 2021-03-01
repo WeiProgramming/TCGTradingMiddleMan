@@ -1,10 +1,10 @@
-import firebase from '../../firebase';
+import {auth} from '../../firebase';
 
 
 export const signInWithEmailAndPassword = (userCredentials) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(firebase.default.auth().signInWithEmailAndPassword(userCredentials.email, userCredentials.password))
+            resolve(auth.signInWithEmailAndPassword(userCredentials.email, userCredentials.password))
         }, 300)
     })
 }
@@ -12,7 +12,7 @@ export const signInWithEmailAndPassword = (userCredentials) => {
 export const createUserWithEmailAndPassword = (userCredentials) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(firebase.default.auth().createUserWithEmailAndPassword(userCredentials.email, userCredentials.password))
+            resolve(auth.createUserWithEmailAndPassword(userCredentials.email, userCredentials.password))
         }, 300);
     });
 }
@@ -20,7 +20,7 @@ export const createUserWithEmailAndPassword = (userCredentials) => {
 export const authState = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(firebase.default.auth())
+            resolve(auth)
         }, 300)
     })
 }

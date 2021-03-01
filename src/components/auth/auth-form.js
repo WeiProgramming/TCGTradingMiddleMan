@@ -12,7 +12,7 @@ import { useParams, Link } from 'react-router-dom'
 
 import './auth-form.css'
 
-import firebase from '../../firebase';
+import {auth} from '../../firebase';
 
 import {
   createUserWithEmailAndPassword,
@@ -58,7 +58,7 @@ const AuthFormComponent = () => {
     }
   }
   const getAuthState = () => {
-    firebase.default.auth().onAuthStateChanged(user => {
+    auth.onAuthStateChanged(user => {
       if(user) {
         
       }

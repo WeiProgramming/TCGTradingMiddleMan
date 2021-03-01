@@ -6,53 +6,36 @@ import ActivityBarComponent from './components/activity-bar/activity-bar'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Redirect
+  Route
 } from 'react-router-dom'
-import React, {useContext} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import './App.css'
 import Footer from './components/footer/footer'
 import {AuthContext} from './firebase-context';
-
-
+import {ProtectedRoute} from './components/route/protected';
 
 function App() {
-  const authContext = useContext(AuthContext);
-  console.log('authcontext in app', authContext)
+  const {currentUser} = useContext(AuthContext);
+  let [navUser, setNavUser] = useState(null);
+      console.log('app fbuser ', currentUser)
+  useEffect(() => {
+    let doSetUser = () => {
+      return currentUser ? setNavUser(currentUser) : setNavUser(null)
+    }
+    doSetUser();
+    console.log('app ', navUser)
+  }, [navUser, setNavUser])
+
+  
   return (
     <div className="App">
       <Router>
         <Navigation></Navigation>
         <ActivityBarComponent></ActivityBarComponent>
         <Switch>
-          <Route exact path="/dashboard" render={() => {
-            if(authContext) {
-              return <DashboardLayout></DashboardLayout>
-            }
-            else {
-              return <Redirect to="/"/>
-            }
-          }}/>
-          <Route exact path="/" render={() => {
-            if(!authContext) {
-              return <DefaultLayout></DefaultLayout>
-            }
-            else {
-              return <Redirect to="/dashboard"/>
-            }
-          }}/>
-          <Route path="/dashboard/:type" render={() => {
-            if(authContext) {
-              return <DashboardLayout></DashboardLayout>
-            }
-            else {
-              return <Redirect to="/login"/>
-            }
-          }}>
-          </Route>
-          <Route path="/:authType">
-            <AuthLayout></AuthLayout>
-          </Route>
+          <ProtectedRoute exact path="/dashboard" component={DashboardLayout} />
+          <Route path="/auth/:authType" ><AuthLayout></AuthLayout>} </Route>
+          <Route exact path="/"><DefaultLayout></DefaultLayout></Route>
         </Switch>
         <Footer></Footer>
       </Router>

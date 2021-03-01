@@ -10,14 +10,15 @@ import {
 
 function DashboardLayout() {
     let match = useRouteMatch();
+    console.log('match link in dash layout ', match)
     return (
         <div className="main-layout">
             <Switch>
+                <Route path={`${match.url}create`}>
+                    <TradeComponent></TradeComponent>
+                </Route>
                 <Route exact path={`${match.url}`}>
                     <DashboardComponent></DashboardComponent>
-                </Route>
-                <Route path={`${match.url}/create`}>
-                    <TradeComponent></TradeComponent>
                 </Route>
             </Switch>
         </div>

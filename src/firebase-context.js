@@ -1,20 +1,46 @@
 import React, { useEffect, useState } from 'react'
 
-import firebase from './firebase'
+import {auth} from './firebase'
 
-export const AuthContext = React.createContext()
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
+export const AuthContext = React.createContext();
+
+
+export const useFirebaseAuthentication = (fbAuth) => {
+  const [authUser, setAuthUser] = useState(null);
+  console.log('using fb auth on statechange ', fbAuth, authUser);
 
   useEffect(() => {
-    firebase.default.auth().onAuthStateChanged(user => {
-      console.log('auth provider ', user)
-      setUser(user)
-    })
+    let doAuthStateChange = async () => {
+      fbAuth.onAuthStateChanged((userr) => {
+        console.log('in eff ', userr);
+      });
+    }
+    doAuthStateChange();
+      console.log('using eff fb auth on statechange ', fbAuth, authUser);
+  }, [authUser, setAuthUser])
+
+
+  return authUser
+} 
+
+export const AuthProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [pending, setPending] = useState(true);
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      console.log('in provider ', user)
+      setCurrentUser(user)
+      setPending(false)
+    });
   }, [])
+  
+  if(pending) {
+    console.log('is pending')
+    return <>Loading</>
+  }
 
   return (
-    <AuthContext.Provider value={ user }>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={ {currentUser} }>{children}</AuthContext.Provider>
   )
 }
