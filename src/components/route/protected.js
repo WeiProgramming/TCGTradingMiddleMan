@@ -9,6 +9,6 @@ export const ProtectedRoute = ({ path, component: Component, ...rest }) => {
   return !!currentUser ? (
     <Route {...rest} path={path} render={(props) => <Component {...props} />} />
   ) : (
-    <Redirect to="/auth/login" />
+    <Redirect to="/" />
   )
 }
