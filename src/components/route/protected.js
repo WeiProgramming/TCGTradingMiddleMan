@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { useFirebaseAuthentication, AuthContext } from '../../firebase-context'
+import { AuthContext } from '../../firebase-context'
+import DefaultLayout from '../../layouts/default/default-layout'
 
 export const ProtectedRoute = ({ path, component: Component, ...rest }) => {
   let { currentUser } = useContext(AuthContext)
@@ -9,6 +10,6 @@ export const ProtectedRoute = ({ path, component: Component, ...rest }) => {
   return !!currentUser ? (
     <Route {...rest} path={path} render={(props) => <Component {...props} />} />
   ) : (
-    <Redirect to="/" />
+    <DefaultLayout></DefaultLayout>
   )
 }
