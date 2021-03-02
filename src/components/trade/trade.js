@@ -99,30 +99,13 @@ function TradeComponent() {
       <form className="" noValidate autoComplete="off">
         <div className="trade-container">
           <Paper className={`trade-left-form ${leftActive ? 'active' : ''}`}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">Search Your Card</FormLabel>
-              <FormGroup>
-                <TextField
-                  id="card-search"
-                  label="Card Name..."
-                  helperText="Find your Yu-Gi-Oh card to trade"
-                  fullWidth
-                  variant="outlined"
-                  value={searchWord}
-                  onChange={(e) => updateSearchWord(e)}
-                />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={(e) => handleOnSearch(e)}
-                >
-                  Search
-                </Button>
-              </FormGroup>
-            </FormControl>
-            <FormControl>
+              <div className="search-input-container">
+                <label for="search-input">Search Card</label>
+                <input id="search-input" placeholder={`${'Dark Magician'}`} className="search-input" name="search-input" value={searchWord} onChange={(e) => updateSearchWord(e)}/>
+              </div>
+
             <div className="trade-left-form__card-search-container">
-              {searchCards.hasOwnProperty('cards') ? (
+              {/* {searchCards.hasOwnProperty('cards') ? (
                 searchCards['cards'].map((card) => {
                   return (
                     <div key={card['id']}>
@@ -138,9 +121,23 @@ function TradeComponent() {
                 <div>
                   <h1>None Found</h1>
                 </div>
-              )}
+              )} */}
+              <div className="trade__img-container">
+                <img class="" src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="card"/>
+              </div>
+              <div className="trade__img-container">
+                <img class="" src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="card"/>
+              </div>
+              <div className="trade__img-container">
+                <img class="" src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="card"/>
+              </div>
+              <div className="trade__img-container">
+                <img class="" src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="card"/>
+              </div>
+              <div className="trade__img-container">
+                <img class="" src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="card"/>
+              </div>
             </div>
-            </FormControl>
             <FormControl>
               <InputLabel id="card-set-label">From which card set?</InputLabel>
               <Select labelId="card-set-label" fullWidth={false}>
