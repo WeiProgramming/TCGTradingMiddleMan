@@ -24,7 +24,7 @@ function App() {
     }
     doSetUser();
     console.log('app ', navUser)
-  }, [navUser, setNavUser])
+  }, [navUser, setNavUser, currentUser])
 
   
   return (
@@ -33,9 +33,9 @@ function App() {
         <Navigation></Navigation>
         <ActivityBarComponent></ActivityBarComponent>
         <Switch>
-          <ProtectedRoute exact path="/dashboard" component={DashboardLayout} />
-          <Route path="/auth/:authType" ><AuthLayout></AuthLayout>} </Route>
-          <Route exact path="/"><DefaultLayout></DefaultLayout></Route>
+          <ProtectedRoute path="/dashboard" component={DashboardLayout} />
+          <Route path="/auth/:authType" ><AuthLayout></AuthLayout></Route>
+          <ProtectedRoute path="/" component={DashboardLayout}></ProtectedRoute>
         </Switch>
         <Footer></Footer>
       </Router>

@@ -1,0 +1,42 @@
+.profile {
+    background-color: #1c1c1c;
+    display: flex;
+    flex-direction: row;
+    padding: 10% 3%;
+    justify-content: space-around;
+}
+
+.profile__right-box {
+    display: flex;
+    flex-direction: column;
+    padding: 3%;
+    background-color: #fff;
+    width: 30%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.profile__details {
+    height: 100%;
+}
+
+
+.profile__avatar {
+    
+}
+
+.profile__avatar img {
+    max-width: 100%;
+    height: auto;
+}
+
+.profile__left-box {
+    display: flex;
+    flex-direction: column;
+    padding: 3%;
+    background-color: #fff;
+    width: 30%;
+    height: 100%;
+    border-radius: 15px;
+
+}

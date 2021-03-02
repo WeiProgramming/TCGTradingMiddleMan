@@ -6,36 +6,36 @@ function DashboardComponent() {
     return (
         <div className="dashboard" color="primary">
             <div className="dashboard__prev">
-                    <img src={greenArrowLogo}/>
+                    <img src={greenArrowLogo} alt="carrow logo"/>
             </div>
             <div className="dashboard__trade-table">
                 <div className="dashboard__card-container">
-                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" />
+                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="cards" />
                 </div>
                 <div className="dashboard__card-container">
-                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" />
+                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="cards" />
                 </div>
                 <div className="dashboard__card-container">
-                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" />
+                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg"alt="cards" />
                 </div>
                 <div className="dashboard__card-container">
-                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" />
+                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="cards" />
                 </div>
                 <div className="dashboard__card-container">
-                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" />
+                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="cards" />
                 </div>
                 <div className="dashboard__card-container">
-                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" />
+                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="cards" />
                 </div>
                 <div className="dashboard__card-container">
-                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" />
+                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="cards" />
                 </div>
                 <div className="dashboard__card-container">
-                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" />
+                    <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="cards" />
                 </div>
             </div>
             <div className="dashboard__next">
-                <img src={greenArrowLogo}/>
+                <img src={greenArrowLogo} alt="carrow logo"/>
             </div>
         </div>
     )
