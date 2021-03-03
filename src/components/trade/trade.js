@@ -99,9 +99,23 @@ function TradeComponent() {
       <form className="" noValidate autoComplete="off">
         <div className="trade-container">
           <Paper className={`trade-left-form ${leftActive ? 'active' : ''}`}>
-              <div className="search-input-container">
-                <label for="search-input">Search Card</label>
-                <input id="search-input" placeholder={`${'Dark Magician'}`} className="search-input" name="search-input" value={searchWord} onChange={(e) => updateSearchWord(e)}/>
+              <div className="trade__input-container">
+                <fieldset>
+                  <legend>Find Your Card</legend>
+                  <label for="search-input">Search Card</label>
+                <div className="trade__search-inline">
+                  <input id="search-input" placeholder={`${'Dark Magician'}`} className="search-input" name="search-input" value={searchWord} onChange={(e) => updateSearchWord(e)}/>
+                  <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={(e) => handleOnSearch(e)}
+                  className="trade__search-btn"
+                >
+                  Search
+                  </Button>
+                </div> 
+                </fieldset>
+                
               </div>
 
             <div className="trade-left-form__card-search-container">
@@ -138,74 +152,94 @@ function TradeComponent() {
                 <img class="" src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="card"/>
               </div>
             </div>
-            <FormControl>
-              <InputLabel id="card-set-label">From which card set?</InputLabel>
-              <Select labelId="card-set-label" fullWidth={false}>
-                <MenuItem value={'LOB'}>Legend Of Blue Eyes</MenuItem>
-                <MenuItem value={'PS'}>Pharoah's Servant</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">Condition?</FormLabel>
-              <RadioGroup aria-label="gender" name="gender1" value={condition} row onChange={(e) => {
-                handleOnRadioChange(e);
-              }}>
-                <FormControlLabel value="new" control={<Radio />} label="New" />
-                <FormControlLabel
-                  value="newused"
-                  control={<Radio />}
-                  label="New Used"
-                />
-                <FormControlLabel
-                  value="used"
-                  control={<Radio />}
-                  label="Used"
-                />
-                <FormControlLabel value="Bad" control={<Radio />} label="Bad" />
-              </RadioGroup>
-            </FormControl>
-            <RadioGroup>
-              <FormLabel>First Edition?</FormLabel>
-              <FormControlLabel value="no" label="No" control={<Radio/>}/>
-              <FormControlLabel value="yes" label="Yes" control={<Radio/>}/>
-            </RadioGroup>
+            <div className="trade__dropdown-container">
+              <fieldset>
+                <legend>Card Set</legend>
+              <label for="card-set-label">From which card set?</label>
+              <select id="card-set-label" fullWidth={false}>
+                <option value={'LOB'}>Legend Of Blue Eyes</option>
+                <option value={'PS'}>Pharoah's Servant</option>
+              </select>
+              </fieldset>
+            </div>
+            <div className="trade__radio-container">
+              <fieldset>
+              <legend>Card Condition?</legend>
+              <div>
+                <label for="condition-new">New</label>
+                <input type="radio" id="condition-new" name="card-condition"/>
+              </div>
+              <div>
+                <label for="condition-new">New Used</label>
+                <input type="radio" id="condition-new" name="card-condition"/>
+              </div>
+              <div>
+                <label for="condition-new">Used</label>
+                <input type="radio" id="condition-new" name="card-condition"/>
+              </div>
+              <div>
+                <label for="condition-new">Heavily Used</label>
+                <input type="radio" id="condition-new" name="card-condition"/>
+              </div>
+              </fieldset>
+            </div>
+            <div className="trade__radio-container">
+              <fieldset>
+              <legend>Edition?</legend>
+              <div>
+                <label for="edition-first">First</label>
+                <input type="radio" id="edition-first" name="card-edition"/>
+              </div>
+              <div>
+                <label for="condition-new">New Used</label>
+                <input type="radio" id="condition-new" name="card-edition"/>
+              </div>
+              <div>
+                <label for="condition-new">Used</label>
+                <input type="radio" id="condition-new" name="card-edition"/>
+              </div>
+              <div>
+                <label for="condition-new">Heavily Used</label>
+                <input type="radio" id="condition-new" name="card-edition"/>
+              </div>
+              </fieldset>
+            </div>
             <Button variant="outlined" color="primary" onClick={(event) => handleFormSubmitClick(event, 'left')}>Submit</Button>
           </Paper>
 
           <Paper className={`trade-right-form ${rightActive ? 'active' : ''}`}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">
-                What are you willing to accept?
-              </FormLabel>
-              <FormGroup row>
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label="$ Money"
-                  labelPlacement="start"
-                ></FormControlLabel>
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label="Card"
-                  labelPlacement="start"
-                ></FormControlLabel>
-              </FormGroup>
-            </FormControl>
-            <TextField
-              id="card-search"
-              label="Card Name..."
-              helperText="Find your Yu-Gi-Oh card to trade"
-              fullWidth
-              variant="outlined"
-            />
-            <Button
+            <div className="trade__checkbox-container">
+              <fieldset>
+                <legend>What are you willing to trade it for?</legend>
+                <div className="trade__checkbox-item">
+                  <label>$ Money</label>
+                  <input id="check-money" type="checkbox" name="check-money" value="money"/>
+                </div>
+                <div className="trade__checkbox-item">
+                  <label>Cards</label>
+                  <input id="check-card" type="checkbox" name="check-card" value="cards"/>
+                </div>
+              </fieldset>
+            </div>
+            <div className="trade__input-container">
+                <fieldset>
+                  <legend>Find Your Card</legend>
+                  <label for="search-input">Search Card</label>
+                  <div className="trade__search-inline">
+                    <input id="search-input" placeholder={`${'Dark Magician'}`} className="search-input" name="search-input" value={searchWord} onChange={(e) => updateSearchWord(e)}/>
+                    <Button
                   variant="contained"
                   color="primary"
                   onClick={(e) => handleOnSearch(e)}
                 >
                   Search
-            </Button>
+                    </Button>
+                  </div> 
+                
+                </fieldset>
+              </div>
             <div className="trade-right-form__card-search-container">
-              {searchCards.hasOwnProperty('cards') ? (
+              {/* {searchCards.hasOwnProperty('cards') ? (
                 searchCards['cards'].map((card) => {
                   return (
                     <div key={card['id']} onMouseEnter={(e) => {
@@ -226,35 +260,46 @@ function TradeComponent() {
                 <div>
                   <h1>None Found</h1>
                 </div>
-              )}
+              )} */}
+              <div className="trade__img-container">
+                <img class="" src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="card"/>
+              </div>
+              <div className="trade__img-container">
+                <img class="" src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="card"/>
+              </div>
+              <div className="trade__img-container">
+                <img class="" src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="card"/>
+              </div>
+              <div className="trade__img-container">
+                <img class="" src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="card"/>
+              </div>
+              <div className="trade__img-container">
+                <img class="" src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="card"/>
+              </div>
             </div>
 
-            <FormControl component="fieldset">
-              <FormLabel component="legend">Condition?</FormLabel>
-              <FormGroup row>
-                <FormControlLabel
-                  value="new"
-                  control={<Checkbox />}
-                  label="New"
-                />
-                <FormControlLabel
-                  value="newused"
-                  control={<Checkbox />}
-                  label="New Used"
-                />
-                <FormControlLabel
-                  value="used"
-                  control={<Checkbox />}
-                  label="Used"
-                />
-                <FormControlLabel
-                  value="Bad"
-                  control={<Checkbox />}
-                  label="Bad"
-                />
-              </FormGroup>
+            <div className="trade__radio-container">
+              <fieldset>
+              <legend>Card Condition?</legend>
+              <div>
+                <label for="condition-new">New</label>
+                <input type="radio" id="condition-new" name="card-condition"/>
+              </div>
+              <div>
+                <label for="condition-new">New Used</label>
+                <input type="radio" id="condition-new" name="card-condition"/>
+              </div>
+              <div>
+                <label for="condition-new">Used</label>
+                <input type="radio" id="condition-new" name="card-condition"/>
+              </div>
+              <div>
+                <label for="condition-new">Heavily Used</label>
+                <input type="radio" id="condition-new" name="card-condition"/>
+              </div>
+              </fieldset>
+            </div>
               <Button variant="outlined" color="primary" onClick={(event) => handleFormSubmitClick(event, 'right')}>Submit</Button>
-            </FormControl>
           </Paper>
         </div>
       </form>
