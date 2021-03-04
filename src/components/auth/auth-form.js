@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 
 import {
   TextField,
@@ -12,18 +12,14 @@ import { useParams, Link } from 'react-router-dom'
 
 import './auth-form.css'
 
-import firebase from '../../firebase';
+import {auth} from '../../firebase';
 
 import {
   createUserWithEmailAndPassword,
-   signInWithEmailAndPassword,
-    signOut,
-     getFirebaseAuthService} from '../../services/api/firebase-auth';
-import {AuthContext} from '../../firebase-context'
+   signInWithEmailAndPassword} from '../../services/api/firebase-auth';
 
 const AuthFormComponent = () => {
   const routeHistory = useHistory();
-  const {user} = useContext(AuthContext);
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -52,25 +48,22 @@ const AuthFormComponent = () => {
   }
   const handleAuthRegister = async (e) => {
     e.preventDefault();
-    console.table(user);
     try {
       let user = await createUserWithEmailAndPassword(form);
       if(user) {
-        routeHistory.push('/');
+        routeHistory.push('/dashboard');
       }
     } catch(e) {
       console.log('invalid');
     }
   }
   const getAuthState = () => {
-    firebase.default.auth().onAuthStateChanged(user => {
+    auth.onAuthStateChanged(user => {
       if(user) {
         
       }
     })
   }
-
-  console.log('this is the user', user)
   return (
     <div className="auth">
         <div>

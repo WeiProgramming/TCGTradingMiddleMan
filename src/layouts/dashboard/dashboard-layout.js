@@ -10,20 +10,15 @@ import {
 
 function DashboardLayout() {
     let match = useRouteMatch();
+    console.log('match link in dash layout ', match)
     return (
         <div className="main-layout">
-            <Link to={`${match.url}/create`} variant="contained" color="primary">
-                Make a new Trade
-            </Link>
-            <Link to={`${match.url}/list`} variant="contained" color="primary">
-                View List
-            </Link>
             <Switch>
-                <Route path={`${match.url}/list`}>
-                    <DashboardComponent></DashboardComponent>
-                </Route>
-                <Route path={`${match.url}/create`}>
+                <Route path={`${match.url}create`}>
                     <TradeComponent></TradeComponent>
+                </Route>
+                <Route exact path={`${match.url}`}>
+                    <DashboardComponent></DashboardComponent>
                 </Route>
             </Switch>
         </div>

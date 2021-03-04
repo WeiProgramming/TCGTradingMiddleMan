@@ -6,37 +6,40 @@ import ActivityBarComponent from './components/activity-bar/activity-bar'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link,
-  useRouteMatch,
+  Route
 } from 'react-router-dom'
+import React, {useContext, useState, useEffect} from 'react'
 import './App.css'
 import Footer from './components/footer/footer'
-import {AuthProvider} from './firebase-context';
+import {AuthContext} from './firebase-context';
+import {ProtectedRoute} from './components/route/protected';
 
 function App() {
+  const {currentUser} = useContext(AuthContext);
+  let [navUser, setNavUser] = useState(null);
+      console.log('app fbuser ', currentUser)
+  useEffect(() => {
+    let doSetUser = () => {
+      return currentUser ? setNavUser(currentUser) : setNavUser(null)
+    }
+    doSetUser();
+    console.log('app ', navUser)
+  }, [navUser, setNavUser])
+
+  
   return (
-    <AuthProvider>
-          <div className="App">
+    <div className="App">
       <Router>
         <Navigation></Navigation>
         <ActivityBarComponent></ActivityBarComponent>
         <Switch>
-          <Route exact path="/">
-            <DefaultLayout></DefaultLayout>
-          </Route>
-          <Route path="/dashboard">
-            <DashboardLayout></DashboardLayout>
-          </Route>
-          <Route path="/:authType">
-            <AuthLayout></AuthLayout>
-          </Route>
+          <ProtectedRoute exact path="/dashboard" component={DashboardLayout} />
+          <Route path="/auth/:authType" ><AuthLayout></AuthLayout>} </Route>
+          <Route exact path="/"><DefaultLayout></DefaultLayout></Route>
         </Switch>
         <Footer></Footer>
       </Router>
     </div>
-    </AuthProvider>
-
   )
 }
 

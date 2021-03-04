@@ -8,13 +8,13 @@ import ygoLogo from '../../assets/images/ygo-logo.png'
 import pokeLogo from '../../assets/images/pokemon-logo.png'
 import mtgLogo from '../../assets/images/mtg-logo.png'
 
-function LandingPage() {
+function LandingPage(props) {
   let [tcgType, setTcgType] = useState('all');
 
   let handleOnTcgClick = (tcgName) => {
     setTcgType(tcgName);
   }
-
+  console.log('landing page props ', props);
   return (
     <div className="landing">
       <section className={`landing__banner ${tcgType}`}>
