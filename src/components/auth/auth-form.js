@@ -6,27 +6,29 @@ import {
   Button,
 } from '@material-ui/core'
 
-import {useHistory} from 'react-router-dom'
+import {Redirect, useHistory} from 'react-router-dom'
 
 import { useParams, Link } from 'react-router-dom'
 
 import './auth-form.css'
 
-import {auth} from '../../firebase';
-
 import {
   createUserWithEmailAndPassword,
-   signInWithEmailAndPassword} from '../../services/api/firebase-auth';
+  signInWithEmailAndPassword,
+  addFireStoreUserDetail
+} from '../../services/api/firebase-auth';
 
 const AuthFormComponent = () => {
   const routeHistory = useHistory();
   const [form, setForm] = useState({
+    username: '', 
     email: '',
     password: '',
     confirmPass: '',
   })
   let { authType } = useParams()
 
+  
   const updateForm = (e) => {
     console.table(form)
     setForm({
@@ -51,18 +53,12 @@ const AuthFormComponent = () => {
     try {
       let user = await createUserWithEmailAndPassword(form);
       if(user) {
+        addFireStoreUserDetail(user, form);
         routeHistory.push('/dashboard');
       }
     } catch(e) {
       console.log('invalid');
     }
-  }
-  const getAuthState = () => {
-    auth.onAuthStateChanged(user => {
-      if(user) {
-        
-      }
-    })
   }
   return (
     <div className="auth">
@@ -70,6 +66,23 @@ const AuthFormComponent = () => {
           <h1>{authType === 'register' ? 'Register' : 'Login'}</h1>
         </div>
         <form className="auth__form">
+          {authType === 'register' ? (
+            <React.Fragment>
+            <label htmlFor="username">Username</label>
+            <input
+              name="username"
+              value={form['usernamej']}
+              label="Confirm Password"
+              control={<TextField />}
+              onChange={(e) => {
+                updateForm(e)
+              }}
+              className="auth__textfield"
+            />
+            </React.Fragment>
+          ) : (
+            <></>
+          )}
           <label htmlFor="email">Email</label>
           <input
             name="email"
@@ -91,11 +104,8 @@ const AuthFormComponent = () => {
             className="auth__textfield"
           />
           {authType === 'register' ? (
+            <React.Fragment>
             <label htmlFor="confirmPass">Confirm Password</label>
-          ) : (
-            ''
-          )}
-          {authType === 'register' ? (
             <input
               name="confirmPass"
               value={form['confirmPass']}
@@ -106,20 +116,23 @@ const AuthFormComponent = () => {
               }}
               className="auth__textfield"
             />
+            </React.Fragment>
           ) : (
-            ''
+            <></>
           )}
       <ButtonGroup>
+        {authType !== 'register' ? (
         <Button
-          variant="outlined"
-          color="primary"
-          component={Link}
-          to=""
-          onClick={(e) => {handleAuthLogin(e)}}
-        >
-          {authType === 'register' ? 'Register' : 'Login'}
-        </Button>
-        <Button
+        variant="outlined"
+        color="primary"
+        component={Link}
+        to=""
+        onClick={(e) => {handleAuthLogin(e)}}
+      >
+        Login
+      </Button>
+        ) : (
+          <Button
           variant="outlined"
           color="primary"
           component={Link}
@@ -127,6 +140,16 @@ const AuthFormComponent = () => {
           onClick={(e) => {handleAuthRegister(e)}}
         >
           Register
+        </Button>
+        )}
+        <Button
+          variant="outlined"
+          color="secondary"
+          component={Link}
+          to=""
+          onClick={(e) => {<Redirect to="/"/>}}
+        >
+          Cancel
         </Button>
       </ButtonGroup>
         </form>

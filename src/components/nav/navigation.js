@@ -1,62 +1,63 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import './navigation.css'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/icons/logo-placeholder.png'
 import {HiSearch} from 'react-icons/hi';
+import {CgProfile} from 'react-icons/cg';
 
-import {signOut, authState} from '../../services/api/firebase-auth'
+
 import {useHistory} from 'react-router-dom'
 import {AiFillHome} from 'react-icons/ai'
-import {AuthContext, useFirebaseAuthentication} from '../../firebase-context'
+import {AuthContext} from '../../firebase-context'
 import {auth} from '../../firebase';
+import {getFireStoreUserDetail} from '../../services/api/firebase-auth'
 
 function Navigation() {
   const {currentUser} = useContext(AuthContext);
+  let fireStoreUser;
+  if(currentUser) {
+    fireStoreUser = getFireStoreUserDetail(currentUser.uid);
+  }
+  
+  let [userDetails, setUserDetails] = useState(null);
   let routeHistory = useHistory();
-  let [navUser, setNavUser] = useState(null);
 
-  // useEffect(() => {
 
-  //   let auth = await authState()
-  //   console.log('auth', auth)
-  //   setIsLoading(!isLoading);
-  //   auth.onAuthStateChanged((fbUser) => {
-  //     console.log('user ', fbUser)
-  //     if(fbUser) {
-  //       let newUserObj = {...fbUser}
-  //       setUser((prevUser => (
-  //         {...prevUser, user: {
-  //           ...newUserObj
-  //         }}
-  //       )));
-  //       setIsLoading(!isLoading);
-  //     }
-  //     else {
-  //       setUser((prevUser) => ({...prevUser, user: {}}));
-  //       console.log(user)
-  //       setIsLoading(!isLoading);
-  //     }
-  //   })
+  useEffect(() => {
+    if(!!currentUser) {
+      fireStoreUser.then(user => {
+        if(user) {
+          console.log('In profile component user ', user);
+          setUserDetails(user);
+        }
+    }).catch((e) => {
+      return console.log(e);
+    })
+    }
 
-  // }, [setUser, setIsLoading])
+  }, [userDetails?.displayName])
 
   let handleLogout = async (e) => {
     e.preventDefault();
     auth.signOut().then(() => {
-      setNavUser(null);
+      setUserDetails(null);
       console.log('signed out')
       routeHistory.push('/')
     }).catch(e => {
       console.log(e)
     })
   }
+
   return (
     <div className="navigation">
       <div className="navigation__logo-container">
+        <Link to="/">
         <img
           className="navigation__logo"
           src={logo}
+          alt="company logo"
         />
+        </Link>
       </div>
       <div className="navigation__search">
         <span className="navigation__icon-container"><HiSearch></HiSearch></span>
@@ -64,25 +65,27 @@ function Navigation() {
       </div>
       <div className="navigation__links-container">
         <div className="navigation__links">
-          {currentUser ? (
+          {(currentUser) ? (
           <React.Fragment>
           <div className="navigation__link-item">
-            <Link component="a" to="/">
+            <Link to="/">
               <AiFillHome></AiFillHome> &nbsp; Home
             </Link>
           </div>
           <div className="navigation__link-item">
-            <Link component="a" to="/dashboard/create">
+            <Link to="/dashboard/create">
               Trades
             </Link>
           </div>
           <div className="navigation__link-item">
-            <Link to="/dashboard" component="a">
-              Profile
+            <Link to="/dashboard/profile">
+              <CgProfile></CgProfile>
+              &nbsp;
+              {userDetails ? `${userDetails.displayName}` : ``}
             </Link>
             </div>
             <div className="navigation__link-item">
-            <Link to="/" component="a" onClick={(e) => {
+            <Link to="/" onClick={(e) => {
               handleLogout(e)
             }}>
               Logout
