@@ -77,6 +77,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
+  overflow-y: scroll;
 }
 
 
@@ -85,6 +86,7 @@
   width: 25%;
   display: flex;
   justify-content: center;
+  margin: 1% 0;
 }
 
 .trade__img-container:hover img {
@@ -116,6 +118,7 @@
   font-weight: bold;
   margin-top: 2%;
   border: 2px solid #000;
+  width: 100%;
 }
 
 .trade__radio-container {
@@ -166,6 +169,8 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
+  overflow-y: scroll;
+
 }
 
 .trade-right-form__card-img {

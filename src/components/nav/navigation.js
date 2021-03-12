@@ -3,14 +3,41 @@ import './navigation.css'
 import { Link } from 'react-router-dom'
 import {HiSearch} from 'react-icons/hi';
 import {CgProfile} from 'react-icons/cg';
-
-
 import {useHistory} from 'react-router-dom'
 import {AiFillHome} from 'react-icons/ai'
 import {AuthContext} from '../../firebase-context'
 import {auth} from '../../firebase';
 import {getFireStoreUserDetail} from '../../services/api/firebase-auth'
 import companyImg from '../../assets/images/company-logo.png'
+
+import {getAllCategories} from '../../services/api/tcgplayer';
+
+const SubNavigation = () => {
+  let [categories, setCategories] = useState([]);
+  useEffect(async () => {
+    let tcgCategories;
+    await getAllCategories.then(categories => {
+      console.log('categories ', categories)
+      tcgCategories = categories["results"];
+    }).catch(e => {
+      console.log('sub nav categories ', e) 
+    })
+    setCategories(tcgCategories);
+  }, [setCategories, categories]);
+  console.table(categories);
+
+  return (
+    <div className="subnav">
+      <div className="subnav__items">
+          {categories.map(category => {
+            return (
+              <Link className="subnav__item" key={category.categoryId}>{category.displayName}</Link> 
+            )
+          })}
+      </div> 
+    </div>
+  )
+}
 
 function Navigation() {
   const {currentUser} = useContext(AuthContext);
@@ -49,7 +76,8 @@ function Navigation() {
   }
 
   return (
-    <div className="navigation">
+    <div className="navigation-full">
+      <div className="navigation">
       <div className="navigation__logo-container">
         <Link to="/">
         <img
@@ -107,6 +135,8 @@ function Navigation() {
         </div>
       </div>
     </div>
+      <SubNavigation></SubNavigation>
+    </div> 
   )
 }
 
