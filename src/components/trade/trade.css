@@ -193,3 +193,12 @@
   padding: 0;
   font-size: .7rem;
 }
+
+.trade__amount-inline {
+  display: flex;
+  flex-direction: column;
+}
+
+.trade__amount-inline > * {
+  margin: 1% 0;
+}

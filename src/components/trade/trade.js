@@ -8,6 +8,23 @@ import './trade.css'
 import {AuthContext} from '../../firebase-context';
 import {addFireStoreUserTradePost} from '../../services/api/firebase-trade';
 
+// TODO: Seperate the two forms 
+const TradeForFormFragment = () => {
+  return (
+    <React.Fragment>
+
+    </React.Fragment>
+  )
+}
+
+const TradeFormFragment = () => {
+  return (
+    <React.Fragment>
+
+    </React.Fragment>
+  )
+}
+
 function TradeComponent() {
   let {currentUser} = useContext(AuthContext);
   let [searchWord, setSearchWord] = useState('');
@@ -20,13 +37,13 @@ function TradeComponent() {
   let [rightActive, setRightActive] = useState(false)
 
   let [tradeForCheckBox, setTradeForCheckBox] = useState([]);
-  let [tradeForAmount, setTradeForAmount] = useState(0);
+  let [tradeForAmount, setTradeForAmount] = useState("0");
 
   let [tradeFormData, setTradeFormData] = useState({
     card: {}
   });
   let [tradeForFormData, setTradeForFormData] = useState({
-    want: [],
+    want: [{},{}],
     card: {}
   });
 
@@ -60,7 +77,7 @@ function TradeComponent() {
   }, [])
   
   async function postUserTrade() {
-    addFireStoreUserTradePost(currentUser, tradeFormData,tradeForFormData);
+    addFireStoreUserTradePost(currentUser, tradeFormData, tradeForFormData);
   }
 
   async function getSearchedWord() {
@@ -90,21 +107,33 @@ function TradeComponent() {
     console.log('search result from click ', searchResult)
   }
 
-  let handleFormSubmitClick = (event, formType) => {
-    if(formType === 'left') {
-      setRightActive(true);
-      setLeftActive(false);
-      clearForm();
-    } else if(formType === 'right') {
-      setRightActive(false);
-      setLeftActive(true);
-      clearForm();
+  let handleFormSubmitClick = () => {
       setTradeForFormData(prev => ({
         ...prev,
         want: [...tradeForCheckBox],
         amount: tradeForAmount
       }))
       postUserTrade();
+      clearForm();
+  }
+
+  let handleFormTransitionClick = (event, formType) => {
+    if(formType === 'left') {
+      setRightActive(true);
+      setLeftActive(false);
+      setSearchWord('');
+      setSearchCards((prevSearchRes) => ({
+        ...prevSearchRes,
+        cards: [],
+      }));
+    } else if(formType === 'right') {
+      setRightActive(false);
+      setLeftActive(true);
+      setSearchWord('');
+      setSearchCards((prevSearchRes) => ({
+        ...prevSearchRes,
+        cards: [],
+      }));
     }
   }
 
@@ -256,7 +285,7 @@ console.log('tradefor checkbox ', tradeForCheckBox);
             <Button 
             variant="outlined" 
             color="primary" 
-            onClick={(event) => handleFormSubmitClick(event, 'left')}>Go To Trade Form</Button>
+            onClick={(event) => handleFormTransitionClick(event, 'left')}>Go To Trade Form</Button>
           </div>
 
           <div className={`trade-right-form ${rightActive ? 'active' : ''}`}>
@@ -271,7 +300,7 @@ console.log('tradefor checkbox ', tradeForCheckBox);
                   name="check-money" 
                   value="money"
                   onChange={(e) => {
-                    setTradeForCheckBox((prevArr) => {
+                  setTradeForCheckBox((prevArr) => {
                       let items = prevArr;
                       let item = {...prevArr[0], isChecked: e.target.checked, [e.target.name]: e.target.value};
                       items[0] = item;
@@ -279,9 +308,9 @@ console.log('tradefor checkbox ', tradeForCheckBox);
                     })
                     console.log('tradeForCheckBox ', tradeForCheckBox)
                   }}/>
-                  <div className="trade__search-inline">
+                  <div className="trade__amount-inline">
                     <label>How much? </label>
-                  <input id="money-amount" className="search-input" name="amount" value={tradeForAmount} onChange={(e) => {
+                  <input id="money-amount" type="number" className="search-input" name="amount" value={tradeForAmount} onChange={(e) => {
                     setTradeForAmount(e.target.value);
                   }}/>
                 </div> 
@@ -309,7 +338,7 @@ console.log('tradefor checkbox ', tradeForCheckBox);
                   <legend>Find Your Card</legend>
                   <label htmlFor="search-input">Search Card</label>
                   <div className="trade__search-inline">
-                    <input id="search-input" placeholder={`${'Dark Magician'}`} className="search-input" name="search-input" value={searchWord} onChange={(e) => updateSearchWord(e)}/>
+                    <input id="search-input" className="search-input" name="search-input" value={searchWord} onChange={(e) => updateSearchWord(e)}/>
                     <Button
                   variant="contained"
                   color="primary"
@@ -402,7 +431,7 @@ console.log('tradefor checkbox ', tradeForCheckBox);
             <Button
                   variant="contained"
                   color="primary"
-                  onClick={(event) => handleFormSubmitClick(event, 'right')}
+                  onClick={(event) => handleFormTransitionClick(event, 'right')}
                 >
                   Back
             </Button>

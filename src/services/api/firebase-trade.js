@@ -1,40 +1,14 @@
-// const userTradeData = {
-//     12345: {
-//         offer: {
-//             cardId: 1234567,
-//             cardSetId: 87654,
-//             condition: 3,
-//             edition: 2
-//         },
-//         accept: {
-//             money: {
-//                 isChecked: true,
-//                 amount: 123.32
-//             },
-//             card: {
-//                 isChecked: true,
-//                 id: 13241241,
-//                 condition: [1,2,4,5],
-//                 edition: [1,2,3,4,5]
-//             }
-//         },
-//         saved: {
-//             total: 45,
-//             savedBy: [
-//                 1213214,
-//                 1321412421,
-//                 5432642,
-//                 54325342
-//             ]
-//         }
-//     }
-// }
 import {db} from '../../firebase';
 
 export const addFireStoreUserTradePost = ({uid}, formTrade, formTradeFor) => {
+    console.log('about to add to fb formTrade ', formTrade);
+    console.log('about to add to fb formTradeFor ', formTradeFor);
+
     return new Promise( async (resolve , reject) => {
         console.log('user being passed in to be added ', uid);
-        let response = await db.collection('trades').doc(uid).set({
+        // let response = {}
+        let response = await db.collection('trades').add({
+            userId: uid,
             trade: {
                 cardId: formTrade["card"]["id"],
                 cardSetId: formTrade["setName"],
@@ -47,6 +21,7 @@ export const addFireStoreUserTradePost = ({uid}, formTrade, formTradeFor) => {
                     amount: formTradeFor["amount"]
                 },
                 card: {
+                    isChecked: true,
                     cardId: formTradeFor["card"]["id"],
                     cardSetId: formTradeFor["setName"],
                     condition: [1,2,4,5],
