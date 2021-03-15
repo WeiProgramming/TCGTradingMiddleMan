@@ -18,6 +18,21 @@ import {
   addFireStoreUserDetail
 } from '../../services/api/firebase-auth';
 
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import firebase from 'firebase';
+
+// Config Auth Ui
+const uiConfig = {
+  // Popup signin flow rather than redirect flow.
+  signInFlow: 'popup',
+  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+  signInSuccessUrl: '/dashboard',
+  // We will display Google and Facebook as auth providers.
+  signInOptions: [
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
+  ]
+}
+
 const AuthFormComponent = () => {
   const routeHistory = useHistory();
   const [form, setForm] = useState({
@@ -61,100 +76,82 @@ const AuthFormComponent = () => {
     }
   }
   return (
-    <div className="auth">
-        <div>
-          <h1>{authType === 'register' ? 'Register' : 'Login'}</h1>
-        </div>
+    <div className="auth" id="main-auth">
         <form className="auth__form">
-          {authType === 'register' ? (
+          {authType !== 'register' ? (
             <React.Fragment>
-            <label htmlFor="username">Username</label>
+            <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
+            </React.Fragment>
+          ) : (            <React.Fragment>
+                    <div>
+          <h1>Register</h1>
+        </div>
+            <label htmlFor="email">Email</label>
             <input
-              name="username"
-              value={form['usernamej']}
-              label="Confirm Password"
+              name="email"
+              value={form['email']}
+              label="Email"
+              control={<TextField />}
+              onChange={(e) => updateForm(e)}
+              className="auth__textfield"
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              name="password"
+              value={form['password']}
+              label="Password"
               control={<TextField />}
               onChange={(e) => {
                 updateForm(e)
               }}
               className="auth__textfield"
             />
-            </React.Fragment>
-          ) : (
-            <></>
-          )}
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            value={form['email']}
-            label="Email"
-            control={<TextField />}
-            onChange={(e) => updateForm(e)}
-            className="auth__textfield"
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            name="password"
-            value={form['password']}
-            label="Password"
-            control={<TextField />}
-            onChange={(e) => {
-              updateForm(e)
-            }}
-            className="auth__textfield"
-          />
-          {authType === 'register' ? (
-            <React.Fragment>
-            <label htmlFor="confirmPass">Confirm Password</label>
-            <input
-              name="confirmPass"
-              value={form['confirmPass']}
-              label="Confirm Password"
-              control={<TextField />}
-              onChange={(e) => {
-                updateForm(e)
-              }}
-              className="auth__textfield"
-            />
-            </React.Fragment>
-          ) : (
-            <></>
-          )}
-      <ButtonGroup>
-        {authType !== 'register' ? (
-        <Button
-        variant="outlined"
-        color="primary"
-        component={Link}
-        to=""
-        onClick={(e) => {handleAuthLogin(e)}}
-      >
-        Login
-      </Button>
-        ) : (
+              <label htmlFor="confirmPass">Confirm Password</label>
+              <input
+                name="confirmPass"
+                value={form['confirmPass']}
+                label="Confirm Password"
+                control={<TextField />}
+                onChange={(e) => {
+                  updateForm(e)
+                }}
+                className="auth__textfield"
+              />
+              <Link to="/auth/forget">
+                Forgot your password?
+              </Link>
+        <ButtonGroup>
           <Button
           variant="outlined"
           color="primary"
           component={Link}
           to=""
-          onClick={(e) => {handleAuthRegister(e)}}
+          onClick={(e) => {handleAuthLogin(e)}}
         >
-          Register
+          Login
         </Button>
-        )}
-        <Button
-          variant="outlined"
-          color="secondary"
-          component={Link}
-          to=""
-          onClick={(e) => {<Redirect to="/"/>}}
-        >
-          Cancel
-        </Button>
-      </ButtonGroup>
+            <Button
+            variant="outlined"
+            color="primary"
+            component={Link}
+            to=""
+            onClick={(e) => {handleAuthRegister(e)}}
+          >
+            Register
+          </Button>
+          <Button
+            variant="outlined"
+            color="secondary"
+            component={Link}
+            to=""
+            onClick={(e) => {<Redirect to="/"/>}}
+          >
+            Cancel
+          </Button>
+        </ButtonGroup>
+          </React.Fragment>)}
         </form>
     </div>
-  )
-}
+  )}
 
 export default AuthFormComponent
