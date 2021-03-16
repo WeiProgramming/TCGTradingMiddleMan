@@ -135,7 +135,6 @@ function Navigation() {
         </div>
       </div>
     </div>
-      <SubNavigation></SubNavigation>
     </div> 
   )
 }

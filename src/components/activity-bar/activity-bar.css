@@ -21,6 +21,17 @@
   }
 }
 
+@keyframes popup {
+  0% {
+    transform: scale(.3);
+    opacity: .3;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;   
+  }
+}
+
 .activity {
   height: 200px;
   background-color: #1c1c1c;
@@ -60,13 +71,14 @@
   .activity__item  {
     height: 100%;
     max-width: 100%;
-    animation-name: grow;
+    /* animation-name: grow;
     animation-timing-function: ease-in-out;
     animation-duration: 10s;
     animation-iteration-count: infinite;
-    animation-direction: normal;
+    animation-direction: normal; */
     cursor: pointer;
     transition: all .3s ease-in-out;
+    position: relative;
   }
 
   .activity__item:hover {
@@ -110,3 +122,26 @@
   .card-container {
     height: 100%;
   }
+
+  .popup {
+    position: absolute;
+    width: 150px;
+    height: 200px;
+    background-color: khaki;
+    top: -90%;
+    right: -175%;
+    opacity: 0;
+    transition: all .1s ease-in-out;
+    padding: 5px;
+    cursor: none;
+    z-index: -5;
+  }
+
+  .popup p, a {
+    font-size: .7rem;
+  }
+
+.show {
+  opacity: 1;
+  z-index: 5;
+}
