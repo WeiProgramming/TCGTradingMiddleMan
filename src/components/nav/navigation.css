@@ -1,3 +1,25 @@
+.navigation-full {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.subnav {
+  background-color: #989898;
+  padding: 1% 0;
+}
+
+.subnav__items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.subnav__item {
+  text-decoration: none;
+  color: #fff;
+}
+
 .navigation {
   width: 100%;
   min-height: 30px;

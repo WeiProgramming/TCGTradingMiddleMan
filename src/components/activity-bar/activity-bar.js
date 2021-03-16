@@ -9,6 +9,7 @@ let ActivityBarComponent = () => {
                 <h4>Newly Posted</h4><img src={logo} alt="online dot icon"/>
             </div>
         <div className="activity__bar">
+
             <div className="activity__item">
                 <img src="https://storage.googleapis.com/ygoprodeck.com/pics/38369349.jpg" alt="card"/>
             </div>

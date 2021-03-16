@@ -18,6 +18,14 @@ export const createUserWithEmailAndPassword = (userCredentials) => {
     });
 }
 
+export const forgetPassword = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve()
+        })
+    })
+}
+
 export const authState = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
