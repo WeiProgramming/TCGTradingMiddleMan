@@ -122,13 +122,6 @@
   padding: 1%;
 }
 
-.trade__img-container:hover {
-  animation-name: wiggle;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  animation-duration: 0.2s;
-}
-
 .trade_img {
   height: auto;
   max-width: 90%;

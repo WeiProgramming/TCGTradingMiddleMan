@@ -1,3 +1,6 @@
+.MuiPaper-root {
+  transition: all 1s ease-in-out;
+}
 .trade {
   background-color: #808080;
 }
@@ -5,7 +8,6 @@
 .trade-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   padding: 0 5%;
 }
 
@@ -43,17 +45,20 @@
 .trade-left-form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  min-width: 50%;
   padding: 2%;
-  transform: scale(.8) translateX(-100%);
-  transition: all 1s ease-in-out 0.2s;
   opacity: .5;
+  transform: translateX(-50%) scale(.8);
+  background-color: #fff;
+  color: #000;
+  transition: all .7s ease-in-out;
+  border-radius: 5px;
 }
 
+
 .trade-left-form.active {
-  transform: translateX(50%);
   opacity: 1;
-  transform: scale(1);
+  transform: translateX(50%) scale(1);
 }
 
 .trade-left-form > * {
@@ -82,18 +87,21 @@
   justify-content: center;
 }
 
+.trade__img-container:hover img {
+  -webkit-box-shadow: 0px 0px 15px 3px #FFFFFF; 
+  box-shadow: 0px 0px 15px 3px #FFFFFF;
+  cursor: pointer;
+}
+
 .trade-left-form__card-search-container img {
   max-width: 100%;
   height: 100%;
+
 }
 
 .trade-left-form__card-img {
   margin: 10px 0;
   max-width: 80%;
-}
-
-.trade__dropdown-container {
-
 }
 
 .trade__dropdown-container fieldset {
@@ -126,16 +134,20 @@
 .trade-right-form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  min-width: 50%;
   padding: 2%;
-  transition: transform 1s ease-in-out 0.2s;
-  transform: translateX(100%);
   opacity: .5;
+  transform: translateX(80%) scale(.8);
+  background-color: #fff;
+  color: #000;
+  transition: all .7s ease-in-out;
+  border-radius: 5px;
+
 }
 
 .trade-right-form.active {
-  transform: translateX(-50%);
   opacity: 1;
+  transform: translateX(-50%) scale(1);
 }
 
 .trade-right-form > * {
@@ -165,7 +177,7 @@
   margin-bottom: 2%;
 }
 
-.trade__checkbox-container fieldset{
+.trade__checkbox-container fieldset {
   display: flex;
   flex-direction: column;
 }

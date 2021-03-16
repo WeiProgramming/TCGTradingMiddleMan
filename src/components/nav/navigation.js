@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import './navigation.css'
 import { Link } from 'react-router-dom'
-import logo from '../../assets/icons/logo-placeholder.png'
 import {HiSearch} from 'react-icons/hi';
 import {CgProfile} from 'react-icons/cg';
 
@@ -11,6 +10,7 @@ import {AiFillHome} from 'react-icons/ai'
 import {AuthContext} from '../../firebase-context'
 import {auth} from '../../firebase';
 import {getFireStoreUserDetail} from '../../services/api/firebase-auth'
+import companyImg from '../../assets/images/company-logo.png'
 
 function Navigation() {
   const {currentUser} = useContext(AuthContext);
@@ -54,7 +54,7 @@ function Navigation() {
         <Link to="/">
         <img
           className="navigation__logo"
-          src={logo}
+          src={companyImg}
           alt="company logo"
         />
         </Link>
