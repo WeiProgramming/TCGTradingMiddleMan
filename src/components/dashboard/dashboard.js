@@ -4,6 +4,7 @@ import greenArrowLogo from '../../assets/images/green-arrow.png';
 
 import { getUserTrades } from '../../services/api/firebase-trade';
 import { AuthContext } from '../../firebase-context';
+import {UserCardWrapperComponent} from '../modals/img-modal';
 
 function DashboardComponent() {
     const { currentUser } = useContext(AuthContext);
@@ -17,13 +18,25 @@ function DashboardComponent() {
     return (
         <div className="dashboard" color="primary">
             <div className="dashboard__list-container">
-                <div className="dashboard__table-title">Watching </div> 
+                <div className="dashboard__table-title">
+                    Favorite
+                </div>
                 <div className="dashboard__table">
-                    dashboard__table
+                    {(tradeItems.length > 0) ? (
+                        tradeItems.map((item) => {
+                            return (
+                                <UserCardWrapperComponent card={item} type={"favorite"}/>
+                            )
+                        })
+                    ) : (
+                        <div>
+                            <p>No Activity</p>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="dashboard__list-container">
-                <div className="dashboard__table-title">Trade List Posted</div> 
+                <div className="dashboard__table-title">Trades</div>
                 {/* <div className="dashboard__prev">
                     <img src={greenArrowLogo} alt="carrow logo" />
                 </div> */}
@@ -31,9 +44,7 @@ function DashboardComponent() {
                     {(tradeItems.length > 0) ? (
                         tradeItems.map((item) => {
                             return (
-                                <div className="dashboard__card-container">
-                                    <img src={item["data"]["trade"]["card"]["card_images"][0]["image_url_small"]} alt="card" />
-                                </div>
+                                <UserCardWrapperComponent card={item} type={"trade"}/>
                             )
                         })
                     ) : (

@@ -3,7 +3,7 @@ import './activity-bar.css'
 import logo from '../../assets/icons/green-dot.png'
 
 import {getLatestTrades} from '../../services/api/firebase-trade';
-import CardWrapperComponent from '../modals/img-modal';
+import {CardWrapperComponent} from '../modals/img-modal';
 
 let ActivityBarComponent = () => {
     let [activityItems, setActivityItem] = useState([]);

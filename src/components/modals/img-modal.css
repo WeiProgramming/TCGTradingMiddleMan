@@ -27,7 +27,7 @@
     border-radius: 10px;
     text-align: right;
     transition: transform .5s ease-in-out;
-    height: 25%;
+    height: 20%;
     width: 40%;
     display: flex;
     justify-content: center;
@@ -46,4 +46,49 @@
 
 .popup:hover .popup__tab {
     transform: translateX(100%);
+}
+
+
+/* UserCard Styling */
+.usercard {
+    position: relative;
+    height: 100%;
+}
+
+.usercard:hover .usercard__overlay {
+    position: absolute;
+    width: 100%;
+    height:100%;
+    background-color: rgba(0,0,0, .2);
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+
+.usercard__options-container {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 5%;
+    justify-content: space-around;
+    opacity: 0;
+    transition: all .3s ease-in-out;
+}
+
+.usercard:hover .usercard__options-container {
+    opacity: 1;
+}
+
+.usercard__option {
+    border: 1px solid white;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10%;
+    background-color: #fff;
+    border-radius: 15px;
+    -webkit-box-shadow: 6px 5px 15px 0px #000000; 
+    box-shadow: 6px 5px 15px 0px #000000;
 }
