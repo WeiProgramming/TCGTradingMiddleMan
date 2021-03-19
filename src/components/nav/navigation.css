@@ -44,8 +44,12 @@
   padding: 0 5px;
 }
 
+.navigation__logo-container a {
+  height: 100%;
+}
+
 .navigation__logo {
-  height: auto;
+  height: 100%;
   max-width: 100%;
 }
 

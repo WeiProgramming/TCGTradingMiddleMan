@@ -77,13 +77,12 @@ const AuthFormComponent = () => {
   }
   return (
     <div className="auth" id="main-auth">
-        <form className="auth__form">
           {authType !== 'register' ? (
             <React.Fragment>
             <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
             </React.Fragment>
-          ) : (            <React.Fragment>
-                    <div>
+          ) : (<form className="auth__form">
+        <div>
           <h1>Register</h1>
         </div>
             <label htmlFor="email">Email</label>
@@ -117,19 +116,7 @@ const AuthFormComponent = () => {
                 }}
                 className="auth__textfield"
               />
-              <Link to="/auth/forget">
-                Forgot your password?
-              </Link>
-        <ButtonGroup>
-          <Button
-          variant="outlined"
-          color="primary"
-          component={Link}
-          to=""
-          onClick={(e) => {handleAuthLogin(e)}}
-        >
-          Login
-        </Button>
+        <div className="btn-grp">
             <Button
             variant="outlined"
             color="primary"
@@ -148,9 +135,8 @@ const AuthFormComponent = () => {
           >
             Cancel
           </Button>
-        </ButtonGroup>
-          </React.Fragment>)}
-        </form>
+        </div>
+        </form>)}
     </div>
   )}
 

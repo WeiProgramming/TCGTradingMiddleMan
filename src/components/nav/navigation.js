@@ -87,10 +87,10 @@ function Navigation() {
         />
         </Link>
       </div>
-      <div className="navigation__search">
+      {/* <div className="navigation__search">
         <span className="navigation__icon-container"><HiSearch></HiSearch></span>
         <input type="text" className="navigation__search-field" name="searchSite"/>
-      </div>
+      </div> */}
       <div className="navigation__links-container">
         <div className="navigation__links">
           {(currentUser) ? (

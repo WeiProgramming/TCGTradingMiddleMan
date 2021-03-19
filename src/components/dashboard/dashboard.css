@@ -35,6 +35,12 @@
 
 .dashboard {
   position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboard > * {
+  width: 50%;
 }
 
 .dashboard__prev {
@@ -99,17 +105,19 @@
   animation-duration: .1s;
 }
 
-.dashboard__trade-table {
+.dashboard__table {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   background-image: url('/src/assets/images/trade-table-bg.jpg');
   background-size: cover;
+  min-height: 80vh;
+  padding: 5%
 }
 
 .dashboard__card-container {
-  height: 300px;
+  height: 200px;
   width: 25%;
   display: flex;
   justify-content: center;
@@ -120,4 +128,15 @@
   animation-name: grow;
   animation-direction: normal;
   animation-duration: 10;
+}
+
+.dashboard__list-container {
+  max-height: 100vh;
+  margin: 2%;
+  border: 25px solid gray;
+  border-radius: 25px;;
+}
+
+.dashboard__table-title {
+  
 }
