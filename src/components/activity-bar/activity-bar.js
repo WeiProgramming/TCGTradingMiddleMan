@@ -1,12 +1,15 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import './activity-bar.css'
 import logo from '../../assets/icons/green-dot.png'
 
 import {getLatestTrades} from '../../services/api/firebase-trade';
 import {CardWrapperComponent} from '../modals/img-modal';
+import {AuthContext} from '../../firebase-context';
 
 let ActivityBarComponent = () => {
+    let {currentUser} = useContext(AuthContext)
     let [activityItems, setActivityItem] = useState([]);
+    let [isOwner, setIsOwner] = useState(false);
     useEffect(() => {
         getLatestTrades().then(trades => {
             console.log('getting latest trade posts ', trades);
@@ -21,8 +24,10 @@ let ActivityBarComponent = () => {
         <div className="activity__bar">
             {(activityItems.length > 0) ? (
                 activityItems.map((item) => {
+                    console.log('new item', item["data"]["userId"] === currentUser.uid);
+
                     return (
-                        <CardWrapperComponent card={item}/>
+                        <CardWrapperComponent card={item} isOwner={item["data"]["userId"] === currentUser.uid ? true : false }/>
                     )
                 })
             ):(

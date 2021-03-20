@@ -1,0 +1,11 @@
+.validator {
+   height: 100%; 
+   width: 100%;
+}
+
+.validator p {
+    color: rgb(247, 99, 99);
+    font-weight: 700;
+    font-size: .8rem;
+    margin: 0;
+}
