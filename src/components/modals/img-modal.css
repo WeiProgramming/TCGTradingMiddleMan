@@ -48,6 +48,14 @@
     transform: translateX(100%);
 }
 
+.popup__owner-icon {
+    color: rgb(63, 216, 63);
+    position: absolute;
+    z-index: 1;
+    right: 30%;
+    top: -10%;
+}
+
 
 /* UserCard Styling */
 .usercard {
@@ -62,6 +70,8 @@
     background-color: rgba(0,0,0, .2);
     transition: all .3s ease-in-out;
     cursor: pointer;
+    -webkit-box-shadow: 0px 0px 15px 3px #FFFFFF; 
+    box-shadow: 0px 0px 15px 3px #FFFFFF;
 }
 
 .usercard__options-container {
@@ -74,9 +84,15 @@
     justify-content: space-around;
     opacity: 0;
     transition: all .3s ease-in-out;
+    bottom: -5%;
 }
 
 .usercard:hover .usercard__options-container {
+    opacity: 1;
+    bottom: 5%;
+}
+
+.usercard:hover .usercard__options-container .usercard__option {
     opacity: 1;
 }
 
@@ -91,4 +107,6 @@
     border-radius: 15px;
     -webkit-box-shadow: 6px 5px 15px 0px #000000; 
     box-shadow: 6px 5px 15px 0px #000000;
+    opacity: 0;
+
 }

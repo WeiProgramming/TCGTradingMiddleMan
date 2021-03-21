@@ -1,7 +1,7 @@
 @keyframes grow {
   0% {
-    transform: scale(.3);
-    opacity: .3;
+    transform: scale(0.3);
+    opacity: 0.3;
   }
   10% {
     transform: scale(1);
@@ -9,26 +9,26 @@
   }
   50% {
     transform: scale(1);
-    opacity: 1; 
+    opacity: 1;
   }
   70% {
     transform: scale(1);
-    opacity: 1; 
+    opacity: 1;
   }
   100% {
     transform: scale(1);
-    opacity: 1;   
+    opacity: 1;
   }
 }
 
 @keyframes popup {
   0% {
-    transform: scale(.3);
-    opacity: .3;
+    transform: scale(0.3);
+    opacity: 0.3;
   }
   100% {
     transform: scale(1);
-    opacity: 1;   
+    opacity: 1;
   }
 }
 
@@ -41,7 +41,7 @@
   border-bottom: 1px solid #000;
 }
 
-.activity__header { 
+.activity__header {
   height: 20%;
   display: flex;
   flex-direction: row;
@@ -50,80 +50,79 @@
 .activity__header img {
   max-width: 100%;
   height: auto;
-  margin-left: .5%;
+  margin-left: 0.5%;
   margin-bottom: 2%;
-  
 }
 
 .activity h4 {
   margin: 0;
   color: #fff;
 }
-  
-  .activity__bar {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-    height: 100%;
-  }
-  
-  .activity__item  {
-    height: 100%;
-    max-width: 100%;
-    /* animation-name: grow;
+
+.activity__bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  height: 100%;
+}
+
+.activity__item {
+  height: 100%;
+  max-width: 100%;
+  /* animation-name: grow;
     animation-timing-function: ease-in-out;
     animation-duration: 10s;
     animation-iteration-count: infinite;
     animation-direction: normal; */
-    cursor: pointer;
-    transition: all .3s ease-in-out;
-    position: relative;
-  }
+  cursor: pointer;
+  position: relative;
+}
 
-  .activity__item:hover {
-    -webkit-box-shadow: 0px 0px 15px 3px #FFFFFF; 
-    box-shadow: 0px 0px 15px 3px #FFFFFF;
-  }
+.activity__item:nth-child(1) {
+  animation-delay: 0.06s;
+}
 
-  .activity__item:nth-child(1) {
-    animation-delay: .06s;
-  }
+.activity__item:nth-child(2) {
+  animation-delay: 0.07s;
+}
 
-  .activity__item:nth-child(2) {
-    animation-delay: .07s;
-  }
+.activity__item:nth-child(3) {
+  animation-delay: 0.08s;
+}
 
-  .activity__item:nth-child(3) {
-    animation-delay: .08s;
-  }
+.activity__item:nth-child(4) {
+  animation-delay: 0.09s;
+}
 
-  .activity__item:nth-child(4) {
-    animation-delay: .09s;
-  }
+.activity__item:nth-child(5) {
+  animation-delay: 0.1s;
+}
 
-  .activity__item:nth-child(5) {
-    animation-delay: .1s;
-  }
+.activity__item:nth-child(6) {
+  animation-delay: 0.2s;
+}
 
-  .activity__item:nth-child(6) {
-    animation-delay: .2s;
-  }
+.activity__item:nth-child(7) {
+  animation-delay: 0.3s;
+}
 
-  .activity__item:nth-child(7) {
-    animation-delay: .3s;
-  }
+.activity__item img:hover {
+  -webkit-box-shadow: 0px 0px 15px 3px #ffffff;
+  box-shadow: 0px 0px 15px 3px #ffffff;
+}
 
-  .activity__item img {
-  height: inherit;
-  max-width: 100%;
-  }
-  
-  .card-container {
-    height: 100%;
-  }
+.activity__item img {
+  max-width: 60%;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
 
-  /* .popup {
+.card-container {
+  height: 100%;
+}
+
+/* .popup {
     position: absolute;
     width: 150px;
     height: 200px;
