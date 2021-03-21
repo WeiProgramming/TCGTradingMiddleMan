@@ -22,9 +22,11 @@ let ActivityBarComponent = () => {
                 <h4>Newly Posted Trades</h4><img src={logo} alt="online dot icon"/>
             </div>
         <div className="activity__bar">
+        {currentUser ? (
+            <React.Fragment>
             {(activityItems.length > 0) ? (
                 activityItems.map((item) => {
-                    console.log('new item', item["data"]["userId"] === currentUser.uid);
+                    // console.log('new item', item["data"]["userId"] === currentUser.uid);
 
                     return (
                         <CardWrapperComponent card={item} isOwner={item["data"]["userId"] === currentUser.uid ? true : false }/>
@@ -35,6 +37,25 @@ let ActivityBarComponent = () => {
                     <p>No Activity</p>
                 </div>
             )}
+            </React.Fragment>
+        ) : (
+        <React.Fragment>
+            {(activityItems.length > 0) ? (
+                activityItems.map((item) => {
+                    return (
+                        <div className="activity__item">
+                            <img key={item?.["id"]} src={
+                item?.data["trade"]["card"]["card_images"][0]["image_url_small"]}
+                alt="card"/>
+                        </div>
+                    )
+                })
+            ):(
+                <div>
+                    <p>No Activity</p>
+                </div>
+            )}
+        </React.Fragment>)}
         </div>
         </div>
     )

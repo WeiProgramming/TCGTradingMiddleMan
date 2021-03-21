@@ -5,7 +5,7 @@ import { BsChatDots, BsPencil } from 'react-icons/bs';
 import { GiMagnifyingGlass } from 'react-icons/gi';
 import {GoPerson} from 'react-icons/go';
 
-export const CardWrapperComponent = ({ card, isOwner }) => {
+export const CardWrapperComponent = ({ card, isOwner,  }) => {
     let [showPopup, setShowPopup] = useState(false);
     let [favorite, setFavorite] = useState(false);
     let [owner, setOwner] = useState(null);
@@ -19,7 +19,6 @@ export const CardWrapperComponent = ({ card, isOwner }) => {
             {owner ? (<div className="popup__owner-icon"><GoPerson></GoPerson></div>) : (<div></div>)}
             <div className="popup__overlay">
                 {owner ? (
-
                     <div className="popup__tab">
                         <GiMagnifyingGlass></GiMagnifyingGlass>
                     </div>
