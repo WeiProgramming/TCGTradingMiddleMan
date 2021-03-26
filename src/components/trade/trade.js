@@ -6,7 +6,7 @@ import axios from 'axios'
 import { searchCard } from '../../services/api/ygo'
 import './trade.css'
 import { AuthContext } from '../../firebase-context';
-import { addFireStoreUserTradePost } from '../../services/api/firebase-trade';
+import { addFireStoreUserTradePost} from '../../services/api/firebase-trade';
 import { InputValidatorComponent } from './input-validator';
 
 // TODO: Seperate the two forms 

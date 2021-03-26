@@ -1,4 +1,5 @@
 import {db} from '../../firebase';
+const admin = require('firebase-admin');
 
 export const addFireStoreUserTradePost = ({uid}, formTrade, formTradeFor) => {
     console.log('about to add to fb formTrade ', formTrade);
@@ -14,8 +15,8 @@ export const addFireStoreUserTradePost = ({uid}, formTrade, formTradeFor) => {
                 cardId: formTrade["card"]["id"],
                 card: formTrade["card"],
                 cardSetId: formTrade["setName"],
-                condition: formTrade["card-condition"],
-                edition: formTrade["card-edition"]
+                condition: formTrade["cardCondition"],
+                edition: formTrade["cardEdition"]
             },
             tradeFor: {
                 money: {
@@ -30,21 +31,22 @@ export const addFireStoreUserTradePost = ({uid}, formTrade, formTradeFor) => {
                     edition: [1,2,3,4,5]
                 }
             },
-            saved: {
-                total: 45,
-                savedBy: [
-                    1213214,
-                    1321412421,
-                    5432642,
-                    54325342
-                ]
-            }
+            favorites: {}
         });
         setTimeout(() => {
             console.log('response from adduser to firestore ', response)
             resolve(response);
         }, 300)
     })
+}
+
+export const updateUserToWatchList = (currentUserId, tradeId) => {
+    let favRef = db.collection(`trades`).doc(`${tradeId}`);
+    favRef.update({
+        favorites: [
+            admin.firestore.FieldValue.arrayUnion(currentUserId)
+        ]
+    });
 }
 
 export const getLatestTrades = async () => {

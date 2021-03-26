@@ -29,7 +29,11 @@ let ActivityBarComponent = () => {
                     // console.log('new item', item["data"]["userId"] === currentUser.uid);
 
                     return (
-                        <CardWrapperComponent card={item} isOwner={item["data"]["userId"] === currentUser.uid ? true : false }/>
+                        <CardWrapperComponent 
+                        card={item} 
+                        isOwner={item["data"]["userId"] === currentUser.uid ? true : false }
+                        userId ={currentUser.uid}
+                        />
                     )
                 })
             ):(

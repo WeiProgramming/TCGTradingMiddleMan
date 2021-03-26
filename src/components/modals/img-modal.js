@@ -4,8 +4,9 @@ import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { BsChatDots, BsPencil } from 'react-icons/bs';
 import { GiMagnifyingGlass } from 'react-icons/gi';
 import {GoPerson} from 'react-icons/go';
+import {updateUserToWatchList} from '../../services/api/firebase-trade';
 
-export const CardWrapperComponent = ({ card, isOwner,  }) => {
+export const CardWrapperComponent = ({ card, isOwner, userId  }) => {
     let [showPopup, setShowPopup] = useState(false);
     let [favorite, setFavorite] = useState(false);
     let [owner, setOwner] = useState(null);
@@ -13,6 +14,11 @@ export const CardWrapperComponent = ({ card, isOwner,  }) => {
     useEffect(() => {
         setOwner(isOwner)
     }, [])
+
+    const handleAddToFavorites = () => {
+        updateUserToWatchList(userId,card["id"]);
+    }
+
     console.log('item comign to modal component ', card, isOwner);
     return (
         <div className="popup">
@@ -25,6 +31,7 @@ export const CardWrapperComponent = ({ card, isOwner,  }) => {
                 ) : (
                     <div className="popup__tab fav" onClick={(e) => {
                         setFavorite(!favorite);
+                        handleAddToFavorites();
                     }}>
                         {favorite ? <AiFillHeart /> : <AiOutlineHeart />}
                     </div>
