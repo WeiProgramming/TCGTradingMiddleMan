@@ -1,5 +1,4 @@
 import {db} from '../../firebase';
-const admin = require('firebase-admin');
 
 export const addFireStoreUserTradePost = ({uid}, formTrade, formTradeFor) => {
     console.log('about to add to fb formTrade ', formTrade);
@@ -44,7 +43,6 @@ export const updateUserToWatchList = (currentUserId, tradeId) => {
     let favRef = db.collection(`trades`).doc(`${tradeId}`);
     favRef.update({
         favorites: [
-            admin.firestore.FieldValue.arrayUnion(currentUserId)
         ]
     });
 }
