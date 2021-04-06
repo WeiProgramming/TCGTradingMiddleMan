@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './img-modal.css';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { AiOutlineEye, AiFillEye } from 'react-icons/ai';
 import { BsChatDots, BsPencil } from 'react-icons/bs';
 import { GiMagnifyingGlass } from 'react-icons/gi';
 import {GoPerson} from 'react-icons/go';
+import {updateUserToWatchList} from '../../services/api/firebase-trade';
 
-export const CardWrapperComponent = ({ card, isOwner,  }) => {
+export const CardWrapperComponent = ({ card, isOwner, userId  }) => {
     let [showPopup, setShowPopup] = useState(false);
     let [favorite, setFavorite] = useState(false);
     let [owner, setOwner] = useState(null);
@@ -13,6 +14,11 @@ export const CardWrapperComponent = ({ card, isOwner,  }) => {
     useEffect(() => {
         setOwner(isOwner)
     }, [])
+
+    const handleAddToFavorites = () => {
+        updateUserToWatchList(userId,card["id"]);
+    }
+
     console.log('item comign to modal component ', card, isOwner);
     return (
         <div className="popup">
@@ -25,8 +31,9 @@ export const CardWrapperComponent = ({ card, isOwner,  }) => {
                 ) : (
                     <div className="popup__tab fav" onClick={(e) => {
                         setFavorite(!favorite);
+                        handleAddToFavorites();
                     }}>
-                        {favorite ? <AiFillHeart /> : <AiOutlineHeart />}
+                        {favorite ? <AiFillEye /> : <AiOutlineEye />}
                     </div>
                 )}
                 {owner ? (
@@ -58,7 +65,7 @@ export const UserCardWrapperComponent = ({ card, type }) => {
                     {type === 'trade' ? (
                         <div className="usercard__option"><BsPencil></BsPencil></div>
                     ) : (
-                        <div className="usercard__option"><AiOutlineHeart /></div>
+                        <div className="usercard__option"><AiFillEye /></div>
                     )}
                 </div>
             </div>
