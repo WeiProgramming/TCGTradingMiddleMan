@@ -27,10 +27,10 @@ let ActivityBarComponent = () => {
             {(activityItems.length > 0) ? (
                 activityItems.map((item) => {
                     // console.log('new item', item["data"]["userId"] === currentUser.uid);
-
+                    console.log('item in activity bar ', item)
                     return (
                         <CardWrapperComponent 
-                        card={item} 
+                        cardData={item} 
                         isOwner={item["data"]["userId"] === currentUser.uid ? true : false }
                         userId ={currentUser.uid}
                         />

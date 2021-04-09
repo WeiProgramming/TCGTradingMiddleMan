@@ -29,8 +29,7 @@ export const addFireStoreUserTradePost = ({uid}, formTrade, formTradeFor) => {
                     condition: [1,2,4,5],
                     edition: [1,2,3,4,5]
                 }
-            },
-            favorites: {}
+            }
         });
         setTimeout(() => {
             console.log('response from adduser to firestore ', response)
@@ -39,12 +38,26 @@ export const addFireStoreUserTradePost = ({uid}, formTrade, formTradeFor) => {
     })
 }
 
-export const updateUserToWatchList = (currentUserId, tradeId) => {
-    let favRef = db.collection(`trades`).doc(`${tradeId}`);
-    favRef.update({
-        favorites: [
-        ]
-    });
+export const addCardToUserWatchList = (cardOfferData, currentUserId) => {
+    let favRef = db.collection(`users`).doc(currentUserId);
+    favRef.collection('favorites').doc(cardOfferData["id"]).set({
+        ...cardOfferData
+    })
+    console.log('adding to favorite list ... ');
+}
+
+export const getUserWatchList = async (userId) => {
+    let watchListRef = db.collection('users').doc(userId).collection('favorites');
+    console.log('get user watch list user id passed ', userId)
+    let watchData = [];
+    await watchListRef.get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log('retrieved watchlist snapshot ', doc.data());
+
+            watchData.push({id: doc.id, data: doc.data()});
+        })
+    })
+    return watchData;
 }
 
 export const getLatestTrades = async () => {

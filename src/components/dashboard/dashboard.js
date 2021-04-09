@@ -5,27 +5,37 @@ import greenArrowLogo from '../../assets/images/green-arrow.png';
 import { getUserTrades } from '../../services/api/firebase-trade';
 import { AuthContext } from '../../firebase-context';
 import {UserCardWrapperComponent} from '../modals/img-modal';
+import {getUserWatchList} from '../../services/api/firebase-trade';
 
 function DashboardComponent() {
     const { currentUser } = useContext(AuthContext);
     let [tradeItems, setTradeItems] = useState([]);
-    useEffect(() => {
+    let [watchItems, setWatchItems] = useState([]);
+    useEffect( () => {
         getUserTrades(currentUser).then(trades => {
             console.log('getting latest user trade posts ', trades, currentUser);
             setTradeItems(trades);
         })
+        getUserWatchList(currentUser["uid"]).then(watchList => {
+            console.log('in user watch list component dashboard ', watchList)
+            setWatchItems(watchList);
+        })
+
     }, [])
     return (
         <div className="dashboard" color="primary">
             <div className="dashboard__list-container">
                 <div className="dashboard__table-title">
-                    Favorite
+                    WatchList
                 </div>
                 <div className="dashboard__table">
-                    {(tradeItems.length > 0) ? (
-                        tradeItems.map((item) => {
+                    {(watchItems.length > 0) ? (
+                        watchItems.map(({data}) => {
+                            console.log('in component watch item ', data)
                             return (
-                                <UserCardWrapperComponent card={item} type={"favorite"}/>
+                                <UserCardWrapperComponent 
+                                card={data} 
+                                type={"favorite"}/>
                             )
                         })
                     ) : (
