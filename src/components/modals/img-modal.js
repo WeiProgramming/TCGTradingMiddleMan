@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './img-modal.css';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { AiOutlineEye, AiFillEye } from 'react-icons/ai';
 import { BsChatDots, BsPencil } from 'react-icons/bs';
 import { GiMagnifyingGlass } from 'react-icons/gi';
 import {GoPerson} from 'react-icons/go';
@@ -33,7 +33,7 @@ export const CardWrapperComponent = ({ cardData, isOwner, userId  }) => {
                         setFavorite(!favorite);
                         handleAddToFavorites();
                     }}>
-                        {favorite ? <AiFillHeart /> : <AiOutlineHeart />}
+                        {favorite ? <AiFillEye /> : <AiOutlineEye />}
                     </div>
                 )}
                 {owner ? (
@@ -65,7 +65,7 @@ export const UserCardWrapperComponent = ({ card, type }) => {
                     {type === 'trade' ? (
                         <div className="usercard__option"><BsPencil></BsPencil></div>
                     ) : (
-                        <div className="usercard__option"><AiOutlineHeart /></div>
+                        <div className="usercard__option"><AiFillEye /></div>
                     )}
                 </div>
             </div>

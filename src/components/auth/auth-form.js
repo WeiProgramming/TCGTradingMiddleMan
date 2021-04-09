@@ -43,7 +43,6 @@ const AuthFormComponent = () => {
   })
   let { authType } = useParams()
 
-  
   const updateForm = (e) => {
     console.table(form)
     setForm({

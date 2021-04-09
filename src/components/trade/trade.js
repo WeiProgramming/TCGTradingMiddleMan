@@ -8,23 +8,7 @@ import './trade.css'
 import { AuthContext } from '../../firebase-context';
 import { addFireStoreUserTradePost} from '../../services/api/firebase-trade';
 import { InputValidatorComponent } from './input-validator';
-
-// TODO: Seperate the two forms 
-const TradeForFormFragment = () => {
-  return (
-    <React.Fragment>
-
-    </React.Fragment>
-  )
-}
-
-const TradeFormFragment = () => {
-  return (
-    <React.Fragment>
-
-    </React.Fragment>
-  )
-}
+import { LoadingComponent } from '../utils/loading';
 
 function TradeComponent() {
   let { currentUser } = useContext(AuthContext);
@@ -48,9 +32,7 @@ function TradeComponent() {
     card: {}
   });
 
-  // TODO: track search can componentize 
-  let [currentSearchPage, setCurrentSearchPage] = useState({});
-
+  let [isLoading, setIsLoading] = useState(false);
 
 
   useEffect(() => {
@@ -73,6 +55,7 @@ function TradeComponent() {
     }
     if (searchWord !== '') {
       getSearchedWord();
+      setIsLoading(false);
       console.log('current searched card list ', searchCards)
     }
   }, [])
@@ -104,7 +87,8 @@ function TradeComponent() {
 
   let handleOnSearch = () => {
     console.log('searching ', searchWord)
-    let searchResult = getSearchedWord()
+    setIsLoading(true);
+    let searchResult = getSearchedWord();
     console.log('search result from click ', searchResult)
   }
 
@@ -144,7 +128,8 @@ function TradeComponent() {
 
       setSelectedTradeCard({ ...card })
       setTradeFormData({
-        card: { ...card }
+        card: { ...card },
+        setName: card["card_sets"][0]["set_code"]
       })
     }
     if (formType === 'right') {
@@ -182,7 +167,6 @@ function TradeComponent() {
 
   console.table('trade form data ', tradeFormData);
   console.table('tradeFor form data ', tradeForFormData);
-  console.log('tradefor checkbox ', tradeForCheckBox);
   return (
     <div className="trade">
       <form className="" noValidate autoComplete="off">
@@ -207,8 +191,9 @@ function TradeComponent() {
               </fieldset>
             </div>
             <div className="trade-left-form__card-search-container">
-              {searchCards.hasOwnProperty('cards') ? (
-                searchCards['cards'].map((card) => {
+              {searchCards.hasOwnProperty('cards') && isLoading ? (
+                <LoadingComponent>
+                    {searchCards['cards'].map((card) => {
                   return (
                     <div key={card['id']} className="trade__img-container">
                       <img
@@ -222,10 +207,11 @@ function TradeComponent() {
                       />
                     </div>
                   )
-                })
-              ) : (
+                })}
+                </LoadingComponent>
+                ) : (
                 <div>
-                  <h1>None Found</h1>
+                  <p>No Cards found</p>
                 </div>
               )}
             </div>
