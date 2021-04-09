@@ -4,9 +4,9 @@ import { AiOutlineEye, AiFillEye } from 'react-icons/ai';
 import { BsChatDots, BsPencil } from 'react-icons/bs';
 import { GiMagnifyingGlass } from 'react-icons/gi';
 import {GoPerson} from 'react-icons/go';
-import {updateUserToWatchList} from '../../services/api/firebase-trade';
+import {addCardToUserWatchList} from '../../services/api/firebase-trade';
 
-export const CardWrapperComponent = ({ card, isOwner, userId  }) => {
+export const CardWrapperComponent = ({ cardData, isOwner, userId  }) => {
     let [showPopup, setShowPopup] = useState(false);
     let [favorite, setFavorite] = useState(false);
     let [owner, setOwner] = useState(null);
@@ -16,10 +16,10 @@ export const CardWrapperComponent = ({ card, isOwner, userId  }) => {
     }, [])
 
     const handleAddToFavorites = () => {
-        updateUserToWatchList(userId,card["id"]);
+        addCardToUserWatchList(cardData, userId);
     }
 
-    console.log('item comign to modal component ', card, isOwner);
+    console.log('item coming to modal component ', cardData, isOwner);
     return (
         <div className="popup">
             {owner ? (<div className="popup__owner-icon"><GoPerson></GoPerson></div>) : (<div></div>)}
@@ -47,7 +47,7 @@ export const CardWrapperComponent = ({ card, isOwner, userId  }) => {
                 )}
             </div>
             <img src={
-                card?.data["trade"]["card"]["card_images"][0]["image_url_small"]}
+                cardData?.data["trade"]["card"]["card_images"][0]["image_url_small"]}
                 alt="card"
                 onMouseOver={() => { setShowPopup(!showPopup) }}
                 onMouseLeave={() => { setShowPopup(!showPopup) }} />
