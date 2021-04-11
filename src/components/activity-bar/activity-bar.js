@@ -12,7 +12,6 @@ let ActivityBarComponent = () => {
     let [isOwner, setIsOwner] = useState(false);
     useEffect(() => {
         getLatestTrades().then(trades => {
-            console.log('getting latest trade posts ', trades);
             setActivityItem(trades);
         })
     }, [])

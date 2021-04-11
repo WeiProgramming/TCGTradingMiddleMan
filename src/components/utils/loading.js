@@ -4,7 +4,7 @@ import {CircularProgress} from '@material-ui/core';
 
 export const LoadingComponent = ({children}) => {
     return (
-        <div>
+        <React.Fragment>
             {children ? (
                 <React.Fragment>
                     {children}
@@ -14,6 +14,6 @@ export const LoadingComponent = ({children}) => {
                     <CircularProgress></CircularProgress>
                 </React.Fragment>
             )}
-        </div>
+        </React.Fragment>
     )
 }

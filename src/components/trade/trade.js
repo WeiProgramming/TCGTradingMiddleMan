@@ -36,7 +36,7 @@ function TradeComponent() {
 
 
   useEffect(() => {
-    console.log('exec ', searchCard(searchWord))
+
     async function getSearchedWord() {
       await axios
         .get(searchCard(searchWord))
@@ -56,7 +56,6 @@ function TradeComponent() {
     if (searchWord !== '') {
       getSearchedWord();
       setIsLoading(false);
-      console.log('current searched card list ', searchCards)
     }
   }, [])
 
@@ -86,10 +85,8 @@ function TradeComponent() {
   }
 
   let handleOnSearch = () => {
-    console.log('searching ', searchWord)
     setIsLoading(true);
     let searchResult = getSearchedWord();
-    console.log('search result from click ', searchResult)
   }
 
   let handleFormSubmitClick = () => {
@@ -124,8 +121,6 @@ function TradeComponent() {
 
   let handleSelectedCard = (formType, card) => {
     if (formType === 'left') {
-      console.log('selected card left');
-
       setSelectedTradeCard({ ...card })
       setTradeFormData({
         card: { ...card },
@@ -133,8 +128,6 @@ function TradeComponent() {
       })
     }
     if (formType === 'right') {
-      console.log('selected card right');
-
       setSelectedTradeForCard(card)
       setTradeForFormData({
         card: { ...card }
@@ -195,7 +188,7 @@ function TradeComponent() {
                 <LoadingComponent>
                     {searchCards['cards'].map((card) => {
                   return (
-                    <div key={card['id']} className="trade__img-container">
+                    <div key={card['id']} className="trade__img-container" >
                       <img
                         src={card['card_images'][0]['image_url_small']}
                         alt={card['name']}
@@ -219,7 +212,7 @@ function TradeComponent() {
               <fieldset>
                 <legend>Card Set</legend>
                 <label htmlFor="card-set-label">From which card set?</label>
-                <select id="card-set-label" fullWidth={false} name="setName" onClick={(e) => { handleTradeFormChange(e) }}>
+                <select id="card-set-label" name="setName" onClick={(e) => { handleTradeFormChange(e) }}>
                   {selectedTradeCard.hasOwnProperty('card_sets') ? selectedTradeCard["card_sets"]?.map((set) => {
                     return (
                       <option value={set['set_code']}>{set["set_name"]} - {set["set_rarity"]}</option>
@@ -299,7 +292,6 @@ function TradeComponent() {
                         items[0] = item;
                         setTradeForCheckBox(items);
                       })
-                      console.log('tradeForCheckBox ', tradeForCheckBox)
                     }} />
                   <div className="trade__amount-inline">
                     <label>How much? </label>
@@ -372,8 +364,9 @@ function TradeComponent() {
                 <label htmlFor="card-set-label">From which card set?</label>
                 <select id="card-set-label" fullWidth={false} name="setName" onClick={(e) => { handleTradeForFormChange(e, 'right') }}>
                   {selectedTradeForCard.hasOwnProperty('card_sets') ? selectedTradeForCard["card_sets"]?.map((set) => {
+                    console.log('this is the set ', set);
                     return (
-                      <option value={set['set_code']}>{set["set_name"]} - {set["set_rarity"]}</option>
+                      <option key="{}" value={set['set_code']}>{set["set_name"]} - {set["set_rarity"]}</option>
                     )
                   }) : (<option>No Sets found</option>)}
                 </select>

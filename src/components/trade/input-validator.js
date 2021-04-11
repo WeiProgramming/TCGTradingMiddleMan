@@ -9,7 +9,6 @@ export const InputValidatorComponent = ({value}) => {
     useEffect(() => {
         setTradeValidationInput(value);
     }, [tradeValidationInput, setTradeValidationInput, value])
-    console.log('input validation ', tradeValidationInput, value);
     return (
         <div className="validator">
             {(tradeValidationInput === '') ? (

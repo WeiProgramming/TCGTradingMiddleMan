@@ -13,11 +13,9 @@ function DashboardComponent() {
     let [watchItems, setWatchItems] = useState([]);
     useEffect( () => {
         getUserTrades(currentUser).then(trades => {
-            console.log('getting latest user trade posts ', trades, currentUser);
             setTradeItems(trades);
         })
         getUserWatchList(currentUser["uid"]).then(watchList => {
-            console.log('in user watch list component dashboard ', watchList)
             setWatchItems(watchList);
         })
 
@@ -31,7 +29,6 @@ function DashboardComponent() {
                 <div className="dashboard__table">
                     {(watchItems.length > 0) ? (
                         watchItems.map(({data}) => {
-                            console.log('in component watch item ', data)
                             return (
                                 <UserCardWrapperComponent 
                                 card={data} 
