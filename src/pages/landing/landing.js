@@ -14,7 +14,6 @@ function LandingPage(props) {
   let handleOnTcgClick = (tcgName) => {
     setTcgType(tcgName);
   }
-  console.log('landing page props ', props);
   return (
     <div className="landing">
       <section className={`landing__banner ${tcgType}`}>

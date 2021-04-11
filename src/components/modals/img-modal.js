@@ -19,7 +19,6 @@ export const CardWrapperComponent = ({ cardData, isOwner, userId  }) => {
         addCardToUserWatchList(cardData, userId);
     }
 
-    console.log('item coming to modal component ', cardData, isOwner);
     return (
         <div className="popup">
             {owner ? (<div className="popup__owner-icon"><GoPerson></GoPerson></div>) : (<div></div>)}

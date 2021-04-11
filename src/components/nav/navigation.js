@@ -17,7 +17,6 @@ const SubNavigation = () => {
   useEffect(async () => {
     let tcgCategories;
     await getAllCategories.then(categories => {
-      console.log('categories ', categories)
       tcgCategories = categories["results"];
     }).catch(e => {
       console.log('sub nav categories ', e) 
@@ -54,7 +53,6 @@ function Navigation() {
     if(!!currentUser) {
       fireStoreUser.then(user => {
         if(user) {
-          console.log('In profile component user ', user);
           setUserDetails(user);
         }
     }).catch((e) => {

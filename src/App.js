@@ -17,13 +17,11 @@ import {ProtectedRoute} from './components/route/protected';
 function App() {
   const {currentUser} = useContext(AuthContext);
   let [navUser, setNavUser] = useState(null);
-      console.log('app fbuser ', currentUser)
   useEffect(() => {
     let doSetUser = () => {
       return currentUser ? setNavUser(currentUser) : setNavUser(null)
     }
     doSetUser();
-    console.log('app ', navUser)
   }, [navUser, setNavUser, currentUser])
 
   

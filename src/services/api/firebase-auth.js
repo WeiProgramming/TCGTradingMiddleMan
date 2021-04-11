@@ -36,7 +36,6 @@ export const authState = () => {
 
 export const addFireStoreUserDetail = ({user}, form) => {
     return new Promise( async (resolve , reject) => {
-        console.log('user being passed in to be added ', user);
         let response = await db.collection('users').doc(user.uid).set({
             displayName: form.username,
             email: user.email,
@@ -49,19 +48,16 @@ export const addFireStoreUserDetail = ({user}, form) => {
             }
         });
         setTimeout(() => {
-            console.log('response from adduser to firestore ', response)
             resolve(response);
         }, 300)
     })
 }
 
 export const getFireStoreUserDetail = async (uid) => {
-        console.log('user being passed in to be added ', uid);
         let user;
         let userRef = db.collection('users').doc(uid);
         await userRef.get().then((doc) => {
             if(doc.exists) {
-                console.log('Success retrieval user ', doc.data());
                 user = doc.data();
             } else {
                 console.log("User doesn't exist")

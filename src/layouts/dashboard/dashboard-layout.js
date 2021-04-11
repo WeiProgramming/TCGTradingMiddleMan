@@ -13,7 +13,6 @@ import {
 
 function DashboardLayout() {
     let match = useRouteMatch();
-    console.log('match link in dash layout ', match)
     // console.log('match params in dash layout ', location);
     return (
         <div className="main-layout">
